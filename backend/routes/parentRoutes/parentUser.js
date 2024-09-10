@@ -6,4 +6,5 @@ const parentUserRouter = express.Router();
 parentUserRouter.post('/parent-login', parentUserLogin)
 parentUserRouter.post('/parent-register', parentRegisterUser)
 
+
 export default parentUserRouter;
