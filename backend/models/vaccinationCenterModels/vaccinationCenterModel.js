@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 
 const vaccinationCenterSchema = new mongoose.Schema({
+  email: { type: String },
   name: { type: String, required: true },
+  phone: { type: String, required: true },
   location: { 
     address: { type: String, required: true },
     city: { type: String, required: true },
@@ -11,10 +13,6 @@ const vaccinationCenterSchema = new mongoose.Schema({
       lat: { type: Number },
       lng: { type: Number }
     }
-  },
-  contactInfo: {
-    phone: { type: String, required: true },
-    email: { type: String }
   },
   operatingHours: { 
     weekdays: { type: String },  
