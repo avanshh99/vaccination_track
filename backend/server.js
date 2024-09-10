@@ -6,6 +6,7 @@ import vaccinationUserRouter from "./routes/vaccinationRoutes/vaccinationUserRou
 import 'dotenv/config';
 import vaccinationCenterRouter from "./routes/vaccinationRoutes/vaccinationCenterRoute.js";
 import parentUserRouter from "./routes/parentRoutes/parentUser.js";
+import parentCreateRouter from "./routes/parentRoutes/childParentRoute.js";
 const app = express();
 const serverLive = process.env.PORT || 5000; 
 
@@ -32,6 +33,8 @@ connectDB();
 
 /* HERE is the list of parent and their vaccine info  */
 app.use("/parent/user",parentUserRouter)
+
+app.use("/parent/child", parentCreateRouter);
 
 
 
