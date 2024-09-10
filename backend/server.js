@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import vaccinationUserRouter from "./routes/vaccinationRoutes/vaccinationUserRoute.js";
 import 'dotenv/config';
 import vaccinationCenterRouter from "./routes/vaccinationRoutes/vaccinationCenterRoute.js";
+import parentUserRouter from "./routes/parentRoutes/parentUser.js";
 const app = express();
 const serverLive = process.env.PORT || 5000; 
 
@@ -28,6 +29,10 @@ app.use(cors(corsOptions));
 app.use(cookieParser());
 
 connectDB();
+
+/* HERE is the list of parent and their vaccine info  */
+app.use("/parent/user",parentUserRouter)
+
 
 
 /* here is the list of vaccination CENTER  */
