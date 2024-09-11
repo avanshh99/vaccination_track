@@ -18,8 +18,8 @@ const childSchema = new mongoose.Schema({
     consentForm: { type: Boolean, default: false },
     disability: { type: Boolean, default: false },
     vaccinationHistory: [{
-        vaccineName: { type: String, required: true },
-        vaccinationStatus: { type: String, required: true },
+        vaccineName: { type: String, enum: ['BCG', 'DTP', 'Hepatitis B', 'Polio', 'MMR', 'Pneumococcal', 'HPV'], required: true },
+        vaccinationStatus: { type: String, enum: ['Administered', 'Pending'], required: true },
         dateAdministered: { type: Date },
         doseNumber: { type: Number },
         vaccinationCenter: { type: String },
