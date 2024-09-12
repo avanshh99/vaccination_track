@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: all 0.s ease;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #F0F4F8;
+  color: #333;
+  line-height: 1.6;
+  font-size: 16px;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  /* color: #2C3E50; */           /* test color tha*/
+  color: #2980B9;
+  margin-bottom: 1rem;
+  transition: color 0.4s ease;
+}
+
+h1:hover, h2:hover, h3:hover {
+  color: #262a2c;
+}
+
+p {
+  color: #5F5F5F;
+  margin-bottom: 1.5rem;
+  line-height: 1.8;
+}
+
+a {
+  text-decoration: none;
+  color: #3498DB;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #2980B9;
+}
+
+button {
+  display: inline-block;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  background-color: #3498DB;
+  color: #FFF;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+button:hover {
+  background-color: #0a5285;
+  box-shadow: 0px 8px 20px rgba(38, 131, 147, 0.15);
+  transform: translateY(-2px);
+}
+
+button:active {
+  background-color: #1C6EA4;
+  transform: translateY(1px);
+}
+
+/* Input ka sara*/
+input, textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #DDD;
+  border-radius: 6px;
+  background-color: #FFF;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+input:focus, textarea:focus {
+  border-color: #3498DB;
+  box-shadow: 0 0 8px rgba(52, 152, 219, 0.2);
+  outline: none;
+}
+
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
+.shadow-light {
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-medium {
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-hover {
+  transition: box-shadow 0.3s ease;
+}
+
+.shadow-hover:hover {
+  box-shadow: 0px 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+.fade-in {
+  animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* gpt wala code to make responsive*/
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  button {
+    font-size: 0.9rem;
+    padding: 10px 18px;
+  }
+
+  .container {
+    padding: 0 1rem;
+  }
+
+  .flex {
+    flex-direction: column;
+  }
+}
+

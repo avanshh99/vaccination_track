@@ -1,0 +1,152 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background: linear-gradient(to right, #cdd7e9, #7798c6);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  transition: background-color 0.5s ease-in-out;
+}
+
+
+* {
+  transition: all 0.3s ease;
+}
+
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter, transform;
+  transition: filter 500ms ease-in-out, transform 500ms ease-in-out;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #9fbaebaa);
+  transform: scale(1.08);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #78c6ffbb);
+  transform: scale(1.1);
+}
+
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 25s linear;
+  }
+}
+
+
+.card {
+  padding: 2em;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Button wlaa styles */
+button {
+  background-color: #87CEFA;
+  color: #fff;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #7BC2F3;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+
+.read-the-docs {
+  color: #64B5F6;
+  font-weight: bold;
+  text-decoration: none;
+  transition: color 0.4s ease, transform 0.4s ease;
+}
+.read-the-docs:hover {
+  color: #4A90E2;
+  text-decoration: underline;
+  transform: scale(1.05);
+}
+
+/* Pie library eror wala */
+.pie-chart-container {
+  width: 300px;
+  margin: 20px auto;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+  transition: box-shadow 0.4s ease;
+}
+
+.pie-chart-container:hover {
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+
+@media screen and (max-width: 768px) {
+  #root {
+    padding: 1rem;
+  }
+
+  .logo {
+    height: 4em;
+  }
+
+  .card {
+    padding: 1.5em;
+  }
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background-color: #F3F8FE;
+}
+
+h1, h2 {
+  font-family: 'Poppins', sans-serif;
+  color: #34495e;
+  transition: color 0.3s ease;
+}
+
+p {
+  color: #5f5f5f;
+  transition: color 0.3s ease;
+}
+
+p:hover {
+  color: #34495e;
+}
+
+
