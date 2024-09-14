@@ -1,10 +1,11 @@
-import parentUser from "../../models/parentModels/parentLogin.js";
+import ParentUser from "../../models/parentModels/parentLogin.js";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt"; 
+import bcrypt from "bcrypt";
+
 const parentUserLogin = async (req, res) => {
     const { email, password } = req.body;
     try {
-        const user = await parentUser.findOne({ email });
+        const user = await ParentUser.findOne({ email });
         if (!user) return res.status(404).json({ success: false, message: "User not found" });
 
         const isMatch = await bcrypt.compare(password, user.password);
@@ -25,12 +26,12 @@ const parentUserLogin = async (req, res) => {
 const parentRegisterUser = async (req, res) => {
     const { name, email, password } = req.body;
     try {
-        const exists = await parentUser.findOne({ email });
+        const exists = await ParentUser.findOne({ email });
         if (exists) return res.status(400).json({ success: false, message: "User already exists" });
 
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        const newUser = new parentUser({
+        const newUser = new ParentUser({
             name,
             email,
             password: hashedPassword 
