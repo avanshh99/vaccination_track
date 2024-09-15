@@ -33,6 +33,7 @@ const Navbar = ({ setShowLogin }) => {
                 <li><Link onClick={showNavbar} to="/view">Child-details</Link></li>
                 <li><Link onClick={showNavbar} to="/postTechnician">Consultant</Link></li>
                 <li><Link onClick={showNavbar} to="/qa">Q&A</Link></li>
+                <li><Link onClick={showNavbar} to="/cp">Child Profile</Link></li>
                 <button className="nav-btn nav-close-btn" onClick={showNavbar}>
                     <FaTimes />
                 </button>
