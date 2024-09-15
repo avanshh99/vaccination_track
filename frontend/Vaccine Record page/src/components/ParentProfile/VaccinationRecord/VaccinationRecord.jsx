@@ -1,50 +1,66 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography } from '@mui/material';
 
 const VaccinationRecord = () => {
-    const [children, setChildren] = useState([]);
-    const [error, setError] = useState(null);
+    const [childProfiles, setChildProfiles] = useState([]);
 
     useEffect(() => {
-        const fetchChildrenProfiles = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/parent/child/children'); // Adjust the API endpoint if necessary
-                if (response.data.success) {
-                    setChildren(response.data.data);
-                } else {
-                    setError(response.data.message || 'Error fetching child profiles');
-                }
-            } catch (err) {
-                setError('An error occurred while fetching data');
-                console.error('Error fetching child profiles:', err);
-            }
-        };
-
-        fetchChildrenProfiles();
+        fetchChildProfiles();
     }, []);
 
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
+    const fetchChildProfiles = async () => {
+        try {
+            const response = await axios.get(`http://localhost:5000/parent/child/children`, {
+                withCredentials: true,
+                headers: { "Content-Type": "application/json" },
+            });
+            if (response.data.success) {
+                setChildProfiles(response.data.data);
+            } else {
+                toast.error("Error");
+            }
+        } catch (error) {
+            console.error('Error fetching child profiles:', error);
+        }
+    };
 
     return (
         <div>
-            <h1>Children's Vaccination Records</h1>
-            {children.length === 0 ? (
-                <p>No children profiles found.</p>
-            ) : (
-                <ul>
-                    {children.map(child => (
-                        <li key={child._id}>
-                            <h2>{child.name}</h2>
-                            <p>Email: {child.email}</p>
-                            <p>Age: {child.age}</p>
-                            <p>DOB: {new Date(child.dob).toLocaleDateString()}</p>
-                            {/* Add more child details here as needed */}
-                        </li>
-                    ))}
-                </ul>
-            )}
+            <Typography variant="h4" gutterBottom>
+                Child Profiles
+            </Typography>
+
+            <TableContainer component={Paper}>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            <TableCell>Name</TableCell>
+                            <TableCell>Age</TableCell>
+                            <TableCell>Date of Birth</TableCell>
+                            <TableCell>Gender</TableCell>
+                            <TableCell>Relationship</TableCell>
+                            <TableCell>Blood Group</TableCell>
+                            <TableCell>Address</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {childProfiles.map((child) => (
+                            <TableRow key={child._id}>
+                                <TableCell>{child.name}</TableCell>
+                                <TableCell>{child.age}</TableCell>
+                                <TableCell>{new Date(child.dob).toLocaleDateString()}</TableCell>
+                                <TableCell>{child.gender}</TableCell>
+                                <TableCell>{child.relationshipWithParent}</TableCell>
+                                <TableCell>{child.bloodGroup}</TableCell>
+                                <TableCell>
+                                    {child.address.street}, {child.address.city}, {child.address.state}, {child.address.country}
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
         </div>
     );
 };

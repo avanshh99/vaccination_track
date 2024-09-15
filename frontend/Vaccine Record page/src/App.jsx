@@ -4,9 +4,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login/Login'
-import VaccinationRecord from './VaccinationRecord';
 import Navbar from './components/Navbar/Navbar'
 import Home from './components/Home/Home';
+import VaccinationRecord from './components/ParentProfile/VaccinationRecord/VaccinationRecord';
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   return (
