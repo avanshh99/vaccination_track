@@ -1,58 +1,90 @@
-import ChildProfile from "../../models/parentModels/childModel.js";
-import ParentUser from "../../models/parentModels/parentLogin.js";
-
-// Create a new child profile and associate it with the parent
+import ChildProfile from '../../models/parentModels/childModel.js';
 export const createChildProfile = async (req, res) => {
+    const { name, age, dob, gender, relationshipWithParent, address, bloodGroup, vaccinationHistory, medicalCondition, upcomingVaccinations, healthInsurance } = req.body;
+    const { userId } = req.user;
+
+    // Check required fields
+    if (!name || !age || !dob || !gender || !relationshipWithParent || !address || !bloodGroup) {
+        return res.status(400).json({ success: false, message: "Missing required fields" });
+    }
+
     try {
-        const parentId = req.user.userId; // Parent ID from JWT authentication
-        console.log(`Parent ID: ${parentId}`);
+        const newChildProfile = new ChildProfile({
+            userId,
+            name,
+            age,
+            dob,
+            gender,
+            relationshipWithParent,
+            address,
+            bloodGroup,
+            vaccinationHistory,
+            medicalCondition,
+            upcomingVaccinations,
+            healthInsurance
+        });
 
-        if (!req.body.name || !req.body.age || !req.body.dob || !req.body.gender) {
-            return res.status(400).json({ message: "Please provide all required fields" });
-        }
-
-        const newChild = new ChildProfile(req.body);
-        const savedChild = await newChild.save();
-
-        const parent = await ParentUser.findById(parentId);
-        if (!parent) {
-            return res.status(404).json({ message: "Parent not found" });
-        }
-
-        // Add the new child's ID to the parent's 'children' array
-        parent.children.push(savedChild._id);
-        await parent.save(); // Save the updated parent document
-        
-        res.status(201).json({ success:true, message: "Child profile created successfully", child: savedChild });
+        const savedChildProfile = await newChildProfile.save();
+        return res.status(200).json({ success: true, message: "Child profile added successfully", data: savedChildProfile });
     } catch (error) {
-        console.error("Error creating child profile:", error);
-        res.status(500).json({ success:false, message: "Error creating child profile", error });
+        console.error(error);
+        return res.status(500).json({ success: false, message: "Internal server error" });
     }
 };
 
-// Get all child profiles associated with the logged-in parent
+// List Child Profiles
 export const getParentChildrenProfiles = async (req, res) => {
+    const { userId } = req.user;
+
     try {
-        const parentId = req.user.userId; // Parent ID from JWT authentication
-        console.log(`Fetching child profiles for Parent ID: ${parentId}`);
-        console.log(parentId);
-        // Find the parent and populate their children's profiles
-        const parent = await ParentUser.findById(parentId).populate('children');
-        if (!parent) {
-            return res.status(404).json({ message: "Parent not found" });
-        }
-        console.log(parent);
-
-        // If no children are associated, return an empty array
-        if (!parent.children || parent.children.length === 0) {
-            return res.status(200).json({ success: true, data: [] });
-        }
-
-        // Respond with the child profiles
-        console.log("Child profiles found:", parent.children);
-        res.status(200).json({ success: true, data: parent.children });
+        const childProfiles = await ChildProfile.find({ userId });
+        return res.json({ success: true, data: childProfiles });
     } catch (error) {
-        console.error("Error fetching child profiles:", error);
-        res.status(500).json({ success:false, message: "Error fetching child profiles", error });
+        console.error(error);
+        return res.status(500).json({ success: false, message: "Error fetching child profiles" });
+    }
+};
+
+export const removeChildProfile = async (req, res) => {
+    const { childProfileId } = req.params;
+    const { userId } = req.user;
+
+    try {
+        const childProfile = await ChildProfile.findOneAndDelete({ _id: childProfileId, userId });
+
+        if (childProfile) {
+            console.log("Child profile deleted successfully:", childProfileId);
+            return res.json({ success: true, message: "Deleted successfully" });
+        } else {
+            console.error("Child profile not found or unauthorized:", childProfileId);
+            return res.status(404).json({ success: false, message: "Child profile not found or unauthorized" });
+        }
+    } catch (error) {
+        console.log("Error in removeChildProfile:", error);
+        return res.status(500).json({ success: false, message: "Internal server error" });
+    }
+};
+
+// Update Child Profile
+export const updateChildProfile = async (req, res) => {
+    const { childProfileId } = req.params;
+    const { userId } = req.user;
+    const updateData = req.body;
+
+    try {
+        const updatedChildProfile = await ChildProfile.findOneAndUpdate(
+            { _id: childProfileId, userId },
+            updateData,
+            { new: true, runValidators: true }
+        );
+
+        if (!updatedChildProfile) {
+            return res.status(404).json({ success: false, message: "Child profile not found or unauthorized" });
+        }
+
+        return res.status(200).json({ success: true, message: "Child profile updated successfully", data: updatedChildProfile });
+    } catch (error) {
+        console.error("Error updating child profile:", error);
+        return res.status(500).json({ success: false, message: "Internal server error" });
     }
 };

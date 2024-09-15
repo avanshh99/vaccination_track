@@ -192,6 +192,7 @@ const VaccinationRecord = () => {
                 <Typography>No child profiles found.</Typography>
             ) : (
                 childProfiles.map(child => renderChildInfo(child))
+                < hr />
             )}
         </div>
     );

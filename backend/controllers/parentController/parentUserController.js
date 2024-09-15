@@ -15,7 +15,7 @@ const parentUserLogin = async (req, res) => {
             expiresIn: '12h'
         });
 
-        res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'none' });
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none' });
         return res.status(200).json({ success: true, message: "Parent user login successfully", token: token });
     } catch (error) {
         console.log("Parent user login error", error);
@@ -41,8 +41,9 @@ const parentRegisterUser = async (req, res) => {
         const token = jwt.sign({ userId: user._id }, process.env.SECRET, {
             expiresIn: '12h'
         });
+        res.cookie('token', token, { httpOnly: true, secure: true, sameSite: 'none' });
 
-        res.cookie('token', token, { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: 'none' });
+
         return res.status(200).json({ success: true, message: "Registered successfully", token: token });
     } catch (error) {
         console.log('Registration error: ', error);

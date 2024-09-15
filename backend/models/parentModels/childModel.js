@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 // Define the ChildProfile schema
 const childSchema = new mongoose.Schema({
+    userId : {type:String},
     name: { type: String, required: true },
     age: { type: Number, required: true, min: 0 }, // Ensure age is positive
     dob: { type: Date, required: true },
@@ -14,7 +15,7 @@ const childSchema = new mongoose.Schema({
         postalCode: { type: String, required: true },
         country: { type: String, required: true }
     },
-    photo: { type: String, default: '' }, // Default value for photo if not provided
+    photo: { type: String, default: '' }, 
     bloodGroup: { type: String, enum: ['O+', 'O-', 'AB+', 'AB-', 'B+', 'B-', 'A+', 'A-'], required: true },
     consentForm: { type: Boolean, default: false },
     disability: { type: Boolean, default: false },
@@ -43,10 +44,10 @@ const childSchema = new mongoose.Schema({
         policyNumber: { type: String, default: '' },
         coverageDetails: { type: String, default: '' }
     },
-    parents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ParentUser' }] // Reference to ParentUser
+    // parents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ParentUser' }] 
 }, { timestamps: true });
 
 // Create and export the ChildProfile model
-const ChildProfile = mongoose.models.ChildProfile || mongoose.model('ChildProfile', childSchema);
+const ChildProfile = mongoose.model('ChildProfile', childSchema);
 
 export default ChildProfile;
