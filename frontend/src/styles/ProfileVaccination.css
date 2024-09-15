@@ -1,0 +1,135 @@
+/* ProfileVaccination.css */
+
+
+
+/* Adjust the top padding to account for the navbar height */
+.profile-vaccination-container {
+    display: flex;
+    gap: 20px;
+    padding-top: 80px; /* Adjust based on the height of the navbar */
+}
+
+.profile-box, .vaccination-history-box {
+    background-color: #ffffff;
+    border: 1px solid #dcdcdc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    flex: 1;
+    min-width: 300px;
+    max-width: 48%;
+    display: flex;
+    flex-direction: column;
+    height: 400px; /* Ensure both sections are the same height */
+}
+
+.profile-box h2, .vaccination-history-box h2 {
+    font-size: 1.8rem;
+    color: #003366; /* Dark Blue */
+    margin: 0 0 10px 0;
+}
+
+.profile-content {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 150px; /* Increased size */
+    height: 150px; /* Increased size */
+    border-radius: 8px; /* Square image */
+    margin-right: 20px;
+    object-fit: cover; /* Ensure the image fits well within the square */
+}
+
+.profile-info {
+    flex: 1;
+}
+
+.profile-info p {
+    margin: 10px 0;
+    font-size: 1.5rem; /* Larger font size */
+    color: #003366; /* Dark Blue */
+}
+
+.edit-button {
+    background-color: #003366; /* Dark Blue */
+    color: white;
+    padding: 10px 15px; /* Slightly larger padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.2rem; /* Larger font size */
+}
+
+.edit-button:hover {
+    background-color: #002244; /* Even darker blue on hover */
+}
+
+.progress-bar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: auto; /* Push chart to the bottom */
+    position: relative;
+    z-index: 1; /* Ensure the progress bar is below the navbar */
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #e6f0ff; /* Light Blue */
+    border-radius: 8px;
+    height: 20px;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+.progress {
+    background-color: #003366; /* Dark Blue */
+    height: 100%;
+    border-radius: 8px;
+    position: absolute;
+}
+
+.progress-text {
+    font-size: 1.5rem; /* Larger font size */
+    color: #003366; /* Dark Blue */
+}
+
+.vaccine-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.vaccine-table th,
+.vaccine-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #dcdcdc;
+    font-size: 1.2rem;
+}
+
+.vaccine-table th {
+    background-color: #e6f0ff; /* Light Blue */
+    color: #003366; /* Dark Blue */
+    font-weight: bold;
+}
+
+.vaccine-table td {
+    color: #003366; /* Dark Blue */
+}
+
+.download-button {
+    background-color: #003366; /* Dark Blue */
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+.download-button:hover {
+    background-color: #002244; /* Even darker blue on hover */
+}

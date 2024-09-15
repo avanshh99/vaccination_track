@@ -1,0 +1,54 @@
+/* Header.css */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px; /* Increased padding for a larger header */
+    background-color: #f0f8ff; /* Light blue background */
+    color: #333; /* Dark text for contrast */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+  }
+  
+  .logo {
+    font-size: 2rem; /* Increased font size for the logo text */
+    font-weight: bold;
+    color: #1e90ff; /* Darker blue for logo text */
+  }
+  
+  .header-icons {
+    display: flex;
+    align-items: center;
+  }
+  
+  .icon {
+    font-size: 1.5rem; /* Larger font size for icons */
+    margin-left: 20px; /* Increased spacing between icons */
+    cursor: pointer;
+    color: #1e90ff; /* Blue color for icons */
+  }
+  
+  .notification-icon {
+    position: relative;
+  }
+  
+  .notification-icon::after {
+    content: ' ';
+    position: absolute;
+    top: -7px; /* Adjusted for larger icon */
+    right: -7px; /* Adjusted for larger icon */
+    width: 10px; /* Larger notification dot */
+    height: 10px; /* Larger notification dot */
+    border-radius: 50%;
+    background-color: red; /* Red dot for notifications */
+  }
+  
+  /* Ensure icons are within the header */
+  .header-icons .icon:last-child {
+    margin-right: 25px; /* Increased space from the right edge */
+  }
+  
