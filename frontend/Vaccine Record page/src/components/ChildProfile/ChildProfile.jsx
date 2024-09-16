@@ -3,6 +3,7 @@ import { Routes, Route, Link, useNavigate, useParams } from 'react-router-dom';
 import { User, Settings, PlusCircle } from 'lucide-react';
 import axios from "axios";
 import { toast } from 'react-toastify';
+import { assets } from '../../assets/assets';
 
 
 // Initial profile state
@@ -36,6 +37,43 @@ const initialProfileState = {
     coverageDetails: ''
   }
 };
+
+
+const doctors = [
+  {
+    "name": "Dr. Aakash Mehta",
+    "specialization": "Cardiologist",
+    "location": "Mumbai",
+    "contactNumber": "91 7999505967"
+  },
+  {
+    "name": "Dr. Priya shetty",
+    "specialization": "Pediatrician",
+    "location": "Delhi",
+    "contactNumber": "91 8369079412"
+  },
+  {
+    "name": "Dr. Rohan Desai",
+    "specialization": "Dermatologist",
+    "location": "Bangalore",
+    "contactNumber": "+91-9876543230"
+  },
+  {
+    "name": "Dr. Meera Patel",
+    "specialization": "Orthopedic",
+    "location": "Ahmedabad",
+    "contactNumber": "+91-9876543240"
+  },
+  {
+    "name": "Dr. Vikram Rao",
+    "specialization": "Neurologist",
+    "location": "Hyderabad",
+    "contactNumber": "+91-9876543250"
+  }
+];
+
+
+
 
 // Component for displaying a child profile
 const ChildProfileView = ({ profile }) => {
@@ -214,6 +252,10 @@ const Sidebar = () => {
           <Settings size={20} />
           <span className="ml-3">Settings</span>
         </Link>
+        <Link to="/cp/doctor" className="flex items-center mb-4 hover:bg-blue-700 p-2 rounded">
+          <Settings size={20} />
+          <span className="ml-3">Connect with Doctor</span>
+        </Link>
       </nav>
     </div>
   );
@@ -226,8 +268,7 @@ const ChildProfile = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Fetch profiles from API or local storage
-    // For now, we'll use a dummy profile
+
     setProfiles([
       {
         id: 'CHD12345',
@@ -306,11 +347,83 @@ const ChildProfile = () => {
               </div>
             </>
           } />
+
+
+          <Route path="doctor" element={
+            <>
+              <h2 className='text-3xl font-bold mb-6 text-blue-800'>Connect With Doctor</h2>
+              <ConnectWithDoctor />
+            </>
+          } />
         </Routes>
+
+
       </div>
     </div>
   );
 };
+
+
+// connect with doctor : 
+
+
+const ConnectWithDoctor = () => {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredDoctors = doctors.filter((doctor) =>
+    doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    doctor.specialization.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    doctor.location.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+
+  const handleWhatsAppClick = (phoneNumber) => {
+    const formattedNumber = phoneNumber.replace(/\s+/g, '');
+    const whatsappUrl = `https://wa.me/${formattedNumber}`;
+    window.open(whatsappUrl, '_blank');
+  };
+
+
+  return (
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+      <h2 className="text-2xl font-bold mb-4 text-blue-800">Connect with a Doctor</h2>
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={handleSearchChange}
+        placeholder="Search by name, specialization, or location"
+        className="w-full p-2 mb-4 border rounded-md"
+      />
+      <ul>
+        {filteredDoctors.length > 0 ? (
+          filteredDoctors.map((doctor) => (
+            <>
+              <li key={doctor.name} className="mb-2">
+                <strong>{doctor.name}</strong> - {doctor.specialization} - {doctor.location} <br />
+                Contact: {doctor.contactNumber}
+              </li>
+              <div className="mt-4 md:mt-0 md:block md:items-center">
+                <button className="bg-[#00008B] text-white text-lg px-6 py-2 rounded-full hover:bg-primary-light transition duration-300">
+                  Apply
+                </button>
+                <div className="p-3">
+                  <img className='cursor-pointer w-10 h-10 rounded-full border-4 border-gray-300 shadow-lg object-cover' src={assets.whatsapp} alt="Connect with Whatsapp" onClick={() => handleWhatsAppClick(doctor.contactNumber)} />
+                </div>
+              </div>
+            </>
+          ))
+        ) : (
+          <li>No doctors found</li>
+        )}
+      </ul>
+    </div>
+  );
+};
+
 
 // Update profile component
 const UpdateProfile = ({ profiles, handleSave }) => {

@@ -1,4 +1,5 @@
 import ChildProfile from '../../models/parentModels/childModel.js';
+import DoctorUser from '../../models/parentModels/doctorModel.js';
 export const createChildProfile = async (req, res) => {
     const { name, age, dob, gender, relationshipWithParent, address, bloodGroup, vaccinationHistory, medicalCondition, upcomingVaccinations, healthInsurance } = req.body;
     const { userId } = req.user;
@@ -88,3 +89,14 @@ export const updateChildProfile = async (req, res) => {
         return res.status(500).json({ success: false, message: "Internal server error" });
     }
 };
+
+
+export const displayDoctorList = async(req, res) => {
+    try {
+        const doctor = await DoctorUser();
+        return res.json({success : true, message: "doctor data successfully passed", data : doctor});
+    } catch (error) {
+        console.log(error);
+        return res.json({success:false, message:"error in passing the doctor data"});
+    }
+}
