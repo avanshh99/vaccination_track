@@ -1,8 +1,10 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
+// Define the ChildProfile schema
 const childSchema = new mongoose.Schema({
+    userId : {type:String},
     name: { type: String, required: true },
-    age: { type: Number, required: true },
+    age: { type: Number, required: true, min: 0 }, // Ensure age is positive
     dob: { type: Date, required: true },
     gender: { type: String, enum: ['Male', 'Female'], required: true },
     relationshipWithParent: { type: String, required: true },
@@ -13,7 +15,7 @@ const childSchema = new mongoose.Schema({
         postalCode: { type: String, required: true },
         country: { type: String, required: true }
     },
-    photo: { type: String },
+    photo: { type: String, default: '' }, 
     bloodGroup: { type: String, enum: ['O+', 'O-', 'AB+', 'AB-', 'B+', 'B-', 'A+', 'A-'], required: true },
     consentForm: { type: Boolean, default: false },
     disability: { type: Boolean, default: false },
@@ -22,28 +24,30 @@ const childSchema = new mongoose.Schema({
         vaccinationStatus: { type: String, enum: ['Administered', 'Pending'], required: true },
         dateAdministered: { type: Date },
         doseNumber: { type: Number },
-        vaccinationCenter: { type: String },
-        previousIllness: { type: String },
-        doctorsRecommendations: { type: String }
+        vaccinationCenter: { type: String, default: '' }, // Default value
+        previousIllness: { type: String, default: '' },
+        doctorsRecommendations: { type: String, default: '' }
     }],
     medicalCondition: {
-        currentCondition: { type: String },
-        otherDetails: { type: String }
+        currentCondition: { type: String, default: 'Healthy' }, // Default condition
+        otherDetails: { type: String, default: '' }
     },
     upcomingVaccinations: [{
         vaccineName: { type: String, required: true },
         suggestedDate: { type: Date },
-        slotBooking: { type: String },
-        vaccinationCenter: { type: String }
+        slotBooking: { type: String, default: 'Pending' }, // Default booking status
+        vaccinationCenter: { type: String, default: '' }
     }],
     vaccineAvailabilityAlerts: { type: Boolean, default: false },
     healthInsurance: {
-        providerName: { type: String },
-        policyNumber: { type: String },
-        coverageDetails: { type: String }
-    }
+        providerName: { type: String, default: '' },
+        policyNumber: { type: String, default: '' },
+        coverageDetails: { type: String, default: '' }
+    },
+    // parents: [{ type: mongoose.Schema.Types.ObjectId, ref: 'ParentUser' }] 
 }, { timestamps: true });
 
-const Child = mongoose.models.user || mongoose.model("ChildProfile", childSchema);
+// Create and export the ChildProfile model
+const ChildProfile = mongoose.model('ChildProfile', childSchema);
 
-export default Child;
+export default ChildProfile;
