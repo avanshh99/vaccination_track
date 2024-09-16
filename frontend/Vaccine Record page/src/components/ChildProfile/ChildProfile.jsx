@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route, Link, useNavigate, useParams } from 'react-router-dom';
 import { User, Settings, PlusCircle } from 'lucide-react';
+import axios from "axios";
+import { toast } from 'react-toastify';
+
 
 // Initial profile state
 const initialProfileState = {
@@ -57,27 +60,58 @@ const ChildProfileView = ({ profile }) => {
 
 // Component for the profile form
 const ProfileForm = ({ profile, setProfile, onSave, isNewProfile }) => {
-    const handleChange = (e) => {
-      const { name, value, type, checked } = e.target;
-      setProfile(prev => {
-        if (name.includes('.')) {
-          const [parent, child] = name.split('.');
-          return { 
-            ...prev, 
-            [parent]: { 
-              ...prev[parent], 
-              [child]: type === 'checkbox' ? checked : value 
-            } 
-          };
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setProfile(prev => {
+      if (name.includes('.')) {
+        const [parent, child] = name.split('.');
+        return {
+          ...prev,
+          [parent]: {
+            ...prev[parent],
+            [child]: type === 'checkbox' ? checked : value
+          }
+        };
+      }
+      return { ...prev, [name]: type === 'checkbox' ? checked : value };
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (isNewProfile) {
+        const response = await axios.post(`http://localhost:5000/parent/child/child-create`, profile, {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        });
+        if (response.data.success) {
+          localStorage.setItem('token', response.data.token);
+          toast.success(response.data.message);
+        } else {
+          toast.error(response.data.message);
         }
-        return { ...prev, [name]: type === 'checkbox' ? checked : value };
-      });
-    };
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
+        console.log('Profile created:', response.data);
+      } else {
+        const response = await axios.put(`http://localhost:5000/parent/child/update/${profile.id}`, profile, {
+          withCredentials: true,
+          headers: { "Content-Type": "application/json" },
+        });
+        if (response.data.success) {
+          console.log('Profile updated:', response.data);
+          toast.success(response.data.message);
+        } else {
+          console.log("error");
+          toast.error(response.data.message);
+        }
+        console.log('Profile updated:', response.data);
+      }
       onSave();
-    };
+    } catch (error) {
+      console.error('Error saving profile:', error);
+    }
+  };
+
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg">
@@ -240,7 +274,7 @@ const ChildProfile = () => {
               {profiles.map(profile => (
                 <div key={profile.id} className="mb-6">
                   <ChildProfileView profile={profile} />
-                  <Link 
+                  <Link
                     to={`/cp/update/${profile.id}`}
                     className="mt-2 inline-block bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
                   >
@@ -256,7 +290,7 @@ const ChildProfile = () => {
           <Route path="add" element={
             <>
               <h2 className="text-3xl font-bold mb-6 text-blue-800">Add New Child</h2>
-              <ProfileForm 
+              <ProfileForm
                 profile={newProfile}
                 setProfile={setNewProfile}
                 onSave={() => handleSave(newProfile, true)}
@@ -297,7 +331,7 @@ const UpdateProfile = ({ profiles, handleSave }) => {
   return (
     <>
       <h2 className="text-3xl font-bold mb-6 text-blue-800">Update Profile</h2>
-      <ProfileForm 
+      <ProfileForm
         profile={profile}
         setProfile={setProfile}
         onSave={() => handleSave(profile)}

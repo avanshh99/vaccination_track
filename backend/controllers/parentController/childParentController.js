@@ -3,7 +3,6 @@ export const createChildProfile = async (req, res) => {
     const { name, age, dob, gender, relationshipWithParent, address, bloodGroup, vaccinationHistory, medicalCondition, upcomingVaccinations, healthInsurance } = req.body;
     const { userId } = req.user;
 
-    // Check required fields
     if (!name || !age || !dob || !gender || !relationshipWithParent || !address || !bloodGroup) {
         return res.status(400).json({ success: false, message: "Missing required fields" });
     }
@@ -79,6 +78,7 @@ export const updateChildProfile = async (req, res) => {
         );
 
         if (!updatedChildProfile) {
+            console.log("not provided updated child profile");
             return res.status(404).json({ success: false, message: "Child profile not found or unauthorized" });
         }
 
