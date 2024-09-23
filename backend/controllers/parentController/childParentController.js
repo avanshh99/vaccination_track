@@ -77,12 +77,11 @@ export const updateChildProfile = async (req, res) => {
             updateData,
             { new: true, runValidators: true }
         );
-
         if (!updatedChildProfile) {
             console.log("not provided updated child profile");
             return res.status(404).json({ success: false, message: "Child profile not found or unauthorized" });
         }
-
+        console.log(updatedChildProfile);
         return res.status(200).json({ success: true, message: "Child profile updated successfully", data: updatedChildProfile });
     } catch (error) {
         console.error("Error updating child profile:", error);
@@ -91,9 +90,49 @@ export const updateChildProfile = async (req, res) => {
 };
 
 
+export const createDoctor = async (req, res) => {
+    const { name, specialization, location, contactNumber } = req.body;
+
+    if (!name || !specialization || !location || !contactNumber) {
+        return res.status(400).json({
+            success: false,
+            message: 'Please provide all required fields (name, specialization, location, contactNumber)',
+        });
+    }
+
+    try {
+        const newDoctorProfile = new DoctorUser({
+            name,
+            specialization,
+            location,
+            contactNumber
+        });
+
+        const savedDoctorInfo = await newDoctorProfile.save();
+
+        return res.status(201).json({
+            success: true,
+            message: 'Doctor created successfully',
+            data: savedDoctorInfo
+        });
+    } catch (error) {
+        console.error('Error creating doctor:', error);
+
+        return res.status(500).json({
+            success: false,
+            message: 'Internal server error',
+            error: error.message 
+        });
+    }
+};
+
+
+
 export const displayDoctorList = async(req, res) => {
     try {
-        const doctor = await DoctorUser();
+        const doctor = await DoctorUser.find({});
+        if(doctor)console.log(doctor);
+        else console.log("error in fetching the data");
         return res.json({success : true, message: "doctor data successfully passed", data : doctor});
     } catch (error) {
         console.log(error);
