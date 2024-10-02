@@ -8,4 +8,6 @@ const vaccinationCenterRouter = express.Router();
 vaccinationCenterRouter.post("/create", jwtAuth, vaccinationCenterInfo);
 vaccinationCenterRouter.post("/add-vaccine", jwtAuth, createVaccine);
 vaccinationCenterRouter.get("/get-vaccine", jwtAuth,getAllVaccines);
+
+
 export default vaccinationCenterRouter;

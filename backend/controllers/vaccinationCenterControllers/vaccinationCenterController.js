@@ -34,9 +34,21 @@ const vaccinationCenterInfo = async(req,res) => {
         const savedCenter = await newVaccinationCenter.save();
         res.status(201).json({success:true, message:"new center registered successfully",data : savedCenter });
     } catch (error) {
-        console.log("error while registering the center ")
+        console.log(error)
         return res.status(500).json({success:false, message : "internal server error "});
     }
 }
 
-export {vaccinationCenterInfo}
+
+
+const getVaccinationCenterInfo = async(req,res) =>{
+    const {userId} = req.user;
+    try{
+        const vaccineCenterInfo = await VaccinationCenter.find({userId})
+        return res.json({success:true, message:"successfully fetch vaccine center info", data : vaccineCenterInfo})
+    }catch(error){
+        console.log(error)
+        return res.json({success:false, message :"failed to get the info"});
+    }
+}
+export {vaccinationCenterInfo, getVaccinationCenterInfo}

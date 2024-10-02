@@ -5,9 +5,9 @@ import { Routes, Route } from 'react-router-dom';
 import './App.css';
 import Login from './components/Login/Login';
 import Navbar from './components/Navbar/Navbar';
-import Home from './components/Home/Home';
-import ChildProfile from './components/ChildProfile/ChildProfile';
-import VaccinationRecord from './components/ParentProfile/VaccinationRecord/VaccinationRecord';
+import ChildMainClass from './components/ChildMainClass/ChildMainClass';
+import VaccinationMain from './vaccination/VaccinationMain';
+import Homemain from './components/Home/Homemain';
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   return (
@@ -18,9 +18,9 @@ function App() {
         <Navbar setShowLogin={setShowLogin} />
         <hr />
         <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/view" element={<VaccinationRecord />}></Route>
-          <Route path="/cp/*" element={<ChildProfile />} />
+          <Route path="/home/" element={<Homemain />}></Route>
+          <Route path="/parent/*" element={<ChildMainClass />}></Route>
+          <Route path ="/vaccination-center/*" element ={<VaccinationMain/>}></Route>
         </Routes>
       </div>
     </>
