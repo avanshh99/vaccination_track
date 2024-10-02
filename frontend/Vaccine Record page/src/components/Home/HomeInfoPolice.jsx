@@ -130,16 +130,18 @@ const HomeInfoPolice = () => {
                     {/* First Block */}
                     <div className="w-full lg:w-1/3 p-4">
                         <div className="bg-white shadow-md rounded-lg overflow-hidden transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-                            <div className="relative h-90">
+                            <div className="relative h-64">
                                 <img
                                     className="w-full h-full object-cover"
-                                    src={assets.ChiefMinister}
+                                    src="https://www.unicef.org/india/sites/unicef.org.india/files/styles/large/public/UN0491574.jpg.webp?itok=MGx4Z_yy"
                                     alt="Sri. Pinarayi Vijayan"
                                 />
                             </div>
                             <div className="p-4 h-28">
-                                <h4 className="text-lg font-semibold">Sri. Eknath Shinde</h4>
-                                <p className="text-sm text-gray-600">Hon'ble Chief Minister of Maharashtra</p>
+                                <h4 className="text-lg font-semibold">Five reasons why immunization is important</h4>
+                                <br />
+                                {/* <p className="text-sm text-gray-600">Five reasons why immunization is important</p> */}
+                                <a href="https://www.unicef.org/india/stories/top-five-reasons-why-immunization-important">Read the story</a>
                             </div>
                         </div>
                     </div>
@@ -147,19 +149,19 @@ const HomeInfoPolice = () => {
                     {/* Second Block */}
                     <div className="w-full lg:w-1/3 p-4">
                         <div className="bg-white shadow-md rounded-lg overflow-hidden transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-                            <div className="relative bg-blue h-90">
+                            <div className="relative bg-blue h-64">
                                 <img
                                     className="w-full h-full object-cover"
-                                    src={assets.PoliceImage1}
+                                    src="https://www.unicef.org/india/sites/unicef.org.india/files/styles/large/public/Immunization%20Schedule%20-%20FB-17.jpg.webp?itok=C7C0d4wD"
                                     alt="Sri. Balram Kumar Upadhyay IPS"
                                 />
                             </div>
                             <div className="p-4 h-28">
-                                <h4 className="text-lg font-semibold">Sri. Amitabh Gupta IPS</h4>
-                                <p className="text-sm text-gray-600">
-                                    Director General of Prisons<br />
-                                    &amp; Correctional Services
-                                </p>
+                                <h4 className="text-lg font-semibold">Frequently asked questions on immunization of children</h4>
+                                {/* <p className="text-sm text-gray-600">
+                                    Answers to help parents make an informed and positive decision regarding their child’s health
+                                </p> */}
+                                <a href="https://www.unicef.org/india/stories/frequently-asked-questions-immunization-children">Read the story</a>
                             </div>
                         </div>
                     </div>
@@ -167,19 +169,20 @@ const HomeInfoPolice = () => {
                     {/* Third Block */}
                     <div className="w-full lg:w-1/3 p-4">
                         <div className="bg-white shadow-md rounded-lg overflow-hidden transform transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-xl">
-                            <div className="relative bg-blue h-90">
+                            <div className="relative bg-blue h-64">
                                 <img
                                     className="w-full h-full object-cover"
-                                    src={assets.PoliceImage2}
+                                    src="https://www.unicef.org/india/sites/unicef.org.india/files/styles/large/public/Immunization%20among%20Tribal%20Population%20in%20India_0.png.webp?itok=F_Hzf6df"
                                     alt="Sri. Vivek Phansalkar IPS"
                                 />
                             </div>
                             <div className="p-4 h-28">
-                                <h4 className="text-lg font-semibold">Sri. Vivek Phansalkar IPS</h4>
-                                <p className="text-sm text-gray-600">
+                                <h4 className="text-lg font-semibold">Immunization among Tribal Population in India</h4>
+                                {/* <p className="text-sm text-gray-600">
                                     Commissioner of Police (CP) of <br />
                                     Mumbai
-                                </p>
+                                </p> */}
+                                <a href="https://www.unicef.org/india/reports/immunization-among-tribal-population-india">Read the story</a>
                             </div>
                         </div>
                     </div>

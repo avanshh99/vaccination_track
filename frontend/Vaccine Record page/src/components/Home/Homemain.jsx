@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Clock, Activity, ChevronLeft, ChevronRight, Phone, MapPin } from 'lucide-react';
 
-const HomeMain = () => {
+const Homemain = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const carouselImages = [
     "/carousel4.jpg",
@@ -169,4 +169,4 @@ const HomeMain = () => {
   );
 };
 
-export default HomeMain;
+export default Homemain;
