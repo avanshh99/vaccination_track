@@ -6,7 +6,7 @@ import './VaccinationRecord.css';
 const VaccinationRecord = () => {
 
   const [vaccines, setVaccines] = useState([
-    { name: 'BCG', type: 'Live attenuated', doseInfo: '0.1ml', price: '$20', schedule: 'At birth', administered: false },
+    { name: 'BCG', type: 'Live attenuated', doseInfo: '0.1ml', price: '$20', schedule: 'At birth', administered: true },
     { name: 'DTP', type: 'Inactivated', doseInfo: '0.5ml', price: '$25', schedule: '2, 4, 6 months', administered: false },
     { name: 'Hepatitis B', type: 'Subunit', doseInfo: '0.5ml', price: '$30', schedule: 'Birth, 1, 6 months', administered: true },
     { name: 'Polio', type: 'Oral', doseInfo: '2 drops', price: '$10', schedule: '2, 4, 6 months', administered: false },

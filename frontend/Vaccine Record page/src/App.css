@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+/*@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
 #root {
   max-width: 1280px;
@@ -66,7 +66,7 @@
 }
 
 /* Button wlaa styles */
-button {
+/* button {
   background-color: #87CEFA;
   color: #fff;
   padding: 12px 24px;
@@ -96,7 +96,7 @@ button:hover {
   transform: scale(1.05);
 }
 
-/* Pie library eror wala */
+
 .pie-chart-container {
   width: 300px;
   margin: 20px auto;
@@ -147,6 +147,6 @@ p {
 
 p:hover {
   color: #34495e;
-}
+} */
 
 

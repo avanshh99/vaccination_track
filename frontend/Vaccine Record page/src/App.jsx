@@ -1,11 +1,13 @@
 import React from 'react';
 import './App.css';
-import VaccinationRecord from './VaccinationRecord';
+import HealthcareCenters from './HealthcareCenters';
+// import VaccinationRecord from './VaccinationRecord';
 
 function App() {
   return (
     <div className="App">
-      <VaccinationRecord />
+      <HealthcareCenters />
+      {/* <VaccinationRecord /> */}
     </div>
   );
 }
