@@ -3,7 +3,7 @@ import { FaArrowRight } from 'react-icons/fa'; // Importing arrow icon
 
 function Steps() {
   return (
-    <div className="min-h-screen bg-white flex flex-col items-center justify-center py-0 mb-0">
+    <div className="min-h-screen flex flex-col items-center justify-center py-0 mb-0 bg-gradient-to-r from-blue-200 to-white">
       <h2 className="text-3xl font-bold mb-16 text-blue-600">Get Vaccinated in 3 Easy Steps</h2>
       <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-6">
         {/* Step 1 */}
