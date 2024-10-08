@@ -8,8 +8,9 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import ChildProfile from './components/ChildProfile/ChildProfile';
 import VaccinationRecord from './components/ParentProfile/VaccinationRecord/VaccinationRecord';
-import SideBar from "./components/Sidebar/SideBar"; // Import the Sidebar
+import Sidebar from "./components/Sidebar/Sidebar"; // Import the Sidebar
 import VaccineRegisterForm from './components/VaccineRegisterForm/VaccineRegisterForm';
+import CenterInfo from './components/CenterInfo/CenterInfo';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -22,12 +23,16 @@ function App() {
         <Navbar setShowLogin={setShowLogin} />
         <hr />
         <div style={{ display: 'flex' }}>
-          <div className="main-content">
+          {/* Sidebar Component */}
+          <Sidebar />
+          {/* Main Content Area */}
+          <div className="main-content" style={{ flexGrow: 1, padding: '20px' }}>
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/view" element={<VaccinationRecord />} />
               <Route path="/cp/*" element={<ChildProfile />} />
               <Route path="/vaccine-register" element={<VaccineRegisterForm />} />
+              <Route path="/center-info" element={<CenterInfo />} />
             </Routes>
           </div>
         </div>
