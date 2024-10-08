@@ -8,8 +8,12 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import ChildProfile from './components/ChildProfile/ChildProfile';
 import VaccinationRecord from './components/ParentProfile/VaccinationRecord/VaccinationRecord';
+import SideBar from "./components/Sidebar/SideBar"; // Import the Sidebar
+import VaccineRegisterForm from './components/VaccineRegisterForm/VaccineRegisterForm';
+
 function App() {
   const [showLogin, setShowLogin] = useState(false);
+
   return (
     <>
       <ToastContainer />
@@ -17,11 +21,16 @@ function App() {
       <div className="app">
         <Navbar setShowLogin={setShowLogin} />
         <hr />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/view" element={<VaccinationRecord />}></Route>
-          <Route path="/cp/*" element={<ChildProfile />} />
-        </Routes>
+        <div style={{ display: 'flex' }}>
+          <div className="main-content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/view" element={<VaccinationRecord />} />
+              <Route path="/cp/*" element={<ChildProfile />} />
+              <Route path="/vaccine-register" element={<VaccineRegisterForm />} />
+            </Routes>
+          </div>
+        </div>
       </div>
     </>
   );

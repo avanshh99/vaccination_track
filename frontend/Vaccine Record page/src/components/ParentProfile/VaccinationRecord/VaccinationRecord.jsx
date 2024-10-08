@@ -251,4 +251,4 @@ const VaccinationRecord = () => {
   );
 };
 
-export default VaccinationRecord;
+export default VaccinationRecord
