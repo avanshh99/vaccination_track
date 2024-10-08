@@ -85,6 +85,48 @@ const HealthcareCenters = () => {
   return (
     <div>
       <h1 className="center-list-heading">Vaccination Center List</h1>
+      
+      
+      <div className="search-bar-container">
+        
+        <input
+          type="text"
+          className="search-input"
+          placeholder="Search by Health care center name"
+        />
+
+                <select className="search-filter">
+          <option value="">Filter by location</option>
+          <option value="Cityville">Cityville</option>
+          <option value="Greendale">Greendale</option>
+          <option value="Healthcity">Healthcity</option>
+          <option value="Sunnytown">Sunnytown</option>
+          <option value="Bluetown">Bluetown</option>
+          <option value="Riverville">Riverville</option>
+          <option value="Mountainville">Mountainville</option>
+          <option value="Clearcity">Clearcity</option>
+        </select>
+
+        
+        <select className="search-filter">
+          <option value="">Filter by vaccine</option>
+          {vaccines.map((vaccine, index) => (
+            <option key={index} value={vaccine.name}>{vaccine.name}</option>
+          ))}
+        </select>
+
+        
+        <select className="search-filter1">
+          <option value="">Select time slot</option>
+          <option value="morning">Morning Slot: 10am - 12.30pm</option>
+          <option value="afternoon">Late Afternoon Slot: 3.30pm - 5.30pm</option>
+          <option value="evening">Evening Slot: 7pm - 8.30pm</option>
+        </select>
+
+        
+        <button className="search-button">Search</button>
+      </div>
+
       <div className="grid-container">
         {healthcareCenters.map((center, index) => (
           <div key={index} className="healthcare-card">
