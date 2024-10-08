@@ -59,317 +59,6 @@ const ChildProfileView = ({ profile }) => {
   );
 };
 
-// Component for the profile form
-// const ProfileForm = ({ profile, setProfile, onSave, isNewProfile }) => {
-//   const handleChange = (e) => {
-//     const { name, value, type, checked } = e.target;
-//     setProfile(prev => {
-//       if (name.includes('.')) {
-//         const [parent, child] = name.split('.');
-//         return {
-//           ...prev,
-//           [parent]: {
-//             ...prev[parent],
-//             [child]: type === 'checkbox' ? checked : value
-//           }
-//         };
-//       }
-//       return { ...prev, [name]: type === 'checkbox' ? checked : value };
-//     });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       if (isNewProfile) {
-//         const response = await axios.post(`http://localhost:5000/parent/child/child-create`, profile, {
-//           withCredentials: true,
-//           headers: { "Content-Type": "application/json" },
-//         });
-//         if (response.data.success) {
-//           localStorage.setItem('token', response.data.token);
-//           toast.success(response.data.message);
-//         } else {
-//           toast.error(response.data.message);
-//         }
-//         console.log('Profile created:', response.data);
-//       } else {
-//         const response = await axios.put(`http://localhost:5000/parent/child/update/${profile.id}`, profile, {
-//           withCredentials: true,
-//           headers: { "Content-Type": "application/json" },
-//         });
-//         if (response.data.success) {
-//           console.log('Profile updated:', response.data);
-//           toast.success(response.data.message);
-//         } else {
-//           console.log("error");
-//           toast.error(response.data.message);
-//         }
-//         console.log('Profile updated:', response.data);
-//       }
-//       onSave();
-//     } catch (error) {
-//       console.error('Error saving profile:', error);
-//     }
-//   };
-
-
-//   return (
-//     <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg">
-//       <div className="grid grid-cols-2 gap-4">
-//         <div>
-//           <label className="block mb-2 text-blue-800">Name:</label>
-//           <input type="text" name="name" value={profile.name} onChange={handleChange} required className="w-full p-2 border rounded-md" />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Age:</label>
-//           <input type="number" name="age" value={profile.age} onChange={handleChange} required className="w-full p-2 border rounded-md" />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Date of Birth:</label>
-//           <input type="date" name="dob" value={profile.dob} onChange={handleChange} required className="w-full p-2 border rounded-md" />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Gender:</label>
-//           <select name="gender" value={profile.gender} onChange={handleChange} required className="w-full p-2 border rounded-md">
-//             <option value="">Select Gender</option>
-//             <option value="Male">Male</option>
-//             <option value="Female">Female</option>
-//           </select>
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Relationship with Parent:</label>
-//           <input type="text" name="relationshipWithParent" value={profile.relationshipWithParent} onChange={handleChange} required className="w-full p-2 border rounded-md" />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Street:</label>
-//           <input type="text" name="address.street" value={profile.address.street} onChange={handleChange} required className="w-full p-2 border rounded-md" />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">City:</label>
-//           <input type="text" name="address.city" value={profile.address.city} onChange={handleChange} required className="w-full p-2 border rounded-md" />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">State:</label>
-//           <input type="text" name="address.state" value={profile.address.state} onChange={handleChange} required className="w-full p-2 border rounded-md" />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Postal Code:</label>
-//           <input type="text" name="address.postalCode" value={profile.address.postalCode} onChange={handleChange} required className="w-full p-2 border rounded-md" />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Country:</label>
-//           <input type="text" name="address.country" value={profile.address.country} onChange={handleChange} required className="w-full p-2 border rounded-md" />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Blood Group:</label>
-//           <select name="bloodGroup" value={profile.bloodGroup} onChange={handleChange} required className="w-full p-2 border rounded-md">
-//             <option value="">Select Blood Group</option>
-//             {['O+', 'O-', 'AB+', 'AB-', 'B+', 'B-', 'A+', 'A-'].map(group => (
-//               <option key={group} value={group}>{group}</option>
-//             ))}
-//           </select>
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Consent Form:</label>
-//           <input type="checkbox" name="consentForm" checked={profile.consentForm} onChange={handleChange} className="mr-2" />
-//           <span>Signed</span>
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Disability:</label>
-//           <input type="checkbox" name="disability" checked={profile.disability} onChange={handleChange} className="mr-2" />
-//           <span>Yes</span>
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Current Medical Condition:</label>
-//           <input type="text" name="medicalCondition.currentCondition" value={profile.medicalCondition.currentCondition} onChange={handleChange} className="w-full p-2 border rounded-md" />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Vaccine Availability Alerts:</label>
-//           <input type="checkbox" name="vaccineAvailabilityAlerts" checked={profile.vaccineAvailabilityAlerts} onChange={handleChange} className="mr-2" />
-//           <span>Enable</span>
-//         </div>
-//       </div>
-//       <button type="submit" className="mt-6 bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
-//         {isNewProfile ? 'Add Child' : 'Update Profile'}
-//       </button>
-//     </form>
-//   );
-// };
-
-// const ProfileForm = ({ profile, setProfile, onSave, isNewProfile }) => {
-//   const handleChange = (e) => {
-//     const { name, value, type, checked } = e.target;
-//     setProfile(prev => {
-//       if (name.includes('.')) {
-//         const [parent, child] = name.split('.');
-//         return {
-//           ...prev,
-//           [parent]: {
-//             ...prev[parent],
-//             [child]: type === 'checkbox' ? checked : value
-//           }
-//         };
-//       }
-//       return { ...prev, [name]: type === 'checkbox' ? checked : value };
-//     });
-//   };
-
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     try {
-//       let response;
-//       if (isNewProfile) {
-//         // Creating a new profile
-//         response = await axios.post(`http://localhost:5000/parent/child/child-create`, profile, {
-//           withCredentials: true,
-//           headers: { "Content-Type": "application/json" },
-//         });
-//       } else {
-//         // Updating an existing profile
-//         response = await axios.put(`http://localhost:5000/parent/child/update/${profile.id}`, profile, {
-//           withCredentials: true,
-//           headers: { "Content-Type": "application/json" },
-//         });
-//       }
-
-//       if (response.data.success) {
-//         localStorage.setItem('token', response.data.token); // Optional: Set token for authentication if required
-//         toast.success(response.data.message);
-//         onSave(); // Callback function after successful save
-//       } else {
-//         toast.error(response.data.message);
-//       }
-//     } catch (error) {
-//       console.error('Error saving profile:', error);
-//       toast.error('An error occurred while saving the profile. Please try again.');
-//     }
-//   };
-
-//   return (
-//     <form onSubmit={handleSubmit} className="bg-white p-6 rounded-lg shadow-lg">
-//       <div className="grid grid-cols-2 gap-4">
-//         <div>
-//           <label className="block mb-2 text-blue-800">Name:</label>
-//           <input
-//             type="text"
-//             name="name"
-//             value={profile.name || ''}
-//             onChange={handleChange}
-//             required
-//             className="w-full p-2 border rounded-md"
-//           />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Age:</label>
-//           <input
-//             type="number"
-//             name="age"
-//             value={profile.age || ''}
-//             onChange={handleChange}
-//             required
-//             className="w-full p-2 border rounded-md"
-//           />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Date of Birth:</label>
-//           <input
-//             type="date"
-//             name="dob"
-//             value={profile.dob || ''}
-//             onChange={handleChange}
-//             required
-//             className="w-full p-2 border rounded-md"
-//           />
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Gender:</label>
-//           <select
-//             name="gender"
-//             value={profile.gender || ''}
-//             onChange={handleChange}
-//             required
-//             className="w-full p-2 border rounded-md"
-//           >
-//             <option value="">Select Gender</option>
-//             <option value="Male">Male</option>
-//             <option value="Female">Female</option>
-//           </select>
-//         </div>
-//         <div>
-//           <label className="block mb-2 text-blue-800">Relationship with Parent:</label>
-//           <input
-//             type="text"
-//             name="relationshipWithParent"
-//             value={profile.relationshipWithParent || ''}
-//             onChange={handleChange}
-//             required
-//             className="w-full p-2 border rounded-md"
-//           />
-//         </div>
-//         {/* Address Fields */}
-//         {['street', 'city', 'state', 'postalCode', 'country'].map(field => (
-//           <div key={field}>
-//             <label className="block mb-2 text-blue-800">{`${field.charAt(0).toUpperCase() + field.slice(1)}:`}</label>
-//             <input
-//               type="text"
-//               name={`address.${field}`}
-//               value={profile.address?.[field] || ''}
-//               onChange={handleChange}
-//               required
-//               className="w-full p-2 border rounded-md"
-//             />
-//           </div>
-//         ))}
-//         <div>
-//           <label className="block mb-2 text-blue-800">Blood Group:</label>
-//           <select
-//             name="bloodGroup"
-//             value={profile.bloodGroup || ''}
-//             onChange={handleChange}
-//             required
-//             className="w-full p-2 border rounded-md"
-//           >
-//             <option value="">Select Blood Group</option>
-//             {['O+', 'O-', 'AB+', 'AB-', 'B+', 'B-', 'A+', 'A-'].map(group => (
-//               <option key={group} value={group}>{group}</option>
-//             ))}
-//           </select>
-//         </div>
-//         {/* Checkboxes for boolean fields */}
-//         {['consentForm', 'disability', 'vaccineAvailabilityAlerts'].map(field => (
-//           <div key={field}>
-//             <label className="block mb-2 text-blue-800">{`${field.replace(/([A-Z])/g, ' $1')}:`}</label>
-//             <input
-//               type="checkbox"
-//               name={field}
-//               checked={profile[field] || false}
-//               onChange={handleChange}
-//               className="mr-2"
-//             />
-//             <span>{field === 'consentForm' ? 'Signed' : 'Yes'}</span>
-//           </div>
-//         ))}
-//         <div>
-//           <label className="block mb-2 text-blue-800">Current Medical Condition:</label>
-//           <input
-//             type="text"
-//             name="medicalCondition.currentCondition"
-//             value={profile.medicalCondition?.currentCondition || ''}
-//             onChange={handleChange}
-//             className="w-full p-2 border rounded-md"
-//           />
-//         </div>
-//       </div>
-//       <button type="submit" className="mt-6 bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600">
-//         {isNewProfile ? 'Add Child' : 'Update Profile'}
-//       </button>
-//     </form>
-//   );
-// };
-
-
-
 
 const ProfileForm = ({ profile, setProfile, onSave, isNewProfile }) => {
   const handleChange = (e) => {
@@ -388,7 +77,7 @@ const ProfileForm = ({ profile, setProfile, onSave, isNewProfile }) => {
       return { ...prev, [name]: type === 'checkbox' ? checked : value };
     });
   };
-
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -549,19 +238,19 @@ const Sidebar = () => {
     <div className="w-64 bg-blue-600 text-white p-6 h-screen">
       <h1 className="text-2xl font-bold mb-8">Profile</h1>
       <nav>
-        <Link to="/cp/profiles" className="flex items-center mb-4 hover:bg-blue-700 p-2 rounded">
+        <Link to="/parent/cp/profiles" className="flex items-center mb-4 hover:bg-blue-700 p-2 rounded">
           <User size={20} />
           <span className="ml-3">Child Profiles</span>
         </Link>
-        <Link to="/cp/add" className="flex items-center mb-4 hover:bg-blue-700 p-2 rounded">
+        <Link to="/parent/cp/add" className="flex items-center mb-4 hover:bg-blue-700 p-2 rounded">
           <PlusCircle size={20} />
           <span className="ml-3">Add Another Child</span>
         </Link>
-        <Link to="/cp/settings" className="flex items-center mb-4 hover:bg-blue-700 p-2 rounded">
+        <Link to="/parent/cp/settings" className="flex items-center mb-4 hover:bg-blue-700 p-2 rounded">
           <Settings size={20} />
           <span className="ml-3">Settings</span>
         </Link>
-        <Link to="/cp/doctor" className="flex items-center mb-4 hover:bg-blue-700 p-2 rounded">
+        <Link to="/parent/cp/doctor" className="flex items-center mb-4 hover:bg-blue-700 p-2 rounded">
           <Settings size={20} />
           <span className="ml-3">Connect with Doctor</span>
         </Link>
@@ -602,7 +291,7 @@ const Sidebar = () => {
 //     } else {
 //       setProfiles(prev => prev.map(p => p._id === profile._id ? profile : p));
 //     }
-//     navigate('/cp/profiles');
+//     navigate('/parent/cp/profiles');
 //   };
 //   return (
 //     <div className="flex bg-blue-50 min-h-screen">
@@ -701,7 +390,7 @@ const ChildProfile = () => {
       // Update existing profile
       setProfiles(prev => prev.map(p => p._id === profile._id ? profile : p));
     }
-    navigate('/cp/profiles'); // Navigate back to the profiles list after saving
+    navigate('/parent/cp/profiles'); // Navigate back to the profiles list after saving
   };
 
   return (
@@ -720,7 +409,7 @@ const ChildProfile = () => {
                   <div key={profile._id} className="mb-6"> {/* Use _id as the key */}
                     <ChildProfileView profile={profile} />
                     <Link
-                      to={`/cp/update/${profile._id}`} // Use _id in the link
+                      to={`parent/cp/update/${profile._id}`} // Use _id in the link
                       className="mt-2 inline-block bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
                     >
                       Update Profile

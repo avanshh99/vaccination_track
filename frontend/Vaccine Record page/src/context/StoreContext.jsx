@@ -4,10 +4,13 @@ export const StoreContext = createContext(null)
 
 const StoreContextProvider = (props) => {
     const [token, setToken] = useState("")
+    const [email, setEmail] = useState("")
 
     const contextValue = {
         token,
-        setToken
+        setToken,
+        email,
+        setEmail
     }
 
     return (

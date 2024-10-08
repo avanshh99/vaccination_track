@@ -1,5 +1,3 @@
-
-
 import express from "express";
 import { jwtAuth } from "../../middleware/auth.js";
 import { createChildProfile, createDoctor, displayDoctorList, getParentChildrenProfiles, updateChildProfile } from "../../controllers/parentController/childParentController.js";
