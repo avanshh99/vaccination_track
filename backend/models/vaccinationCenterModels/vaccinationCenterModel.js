@@ -19,7 +19,6 @@ const vaccinationCenterSchema = new mongoose.Schema({
     weekends: { type: String } 
   },
   capacity: { type: Number, required: true },
-  availableVaccines: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Vaccine' }],
 });
 
 const VaccinationCenter = mongoose.model('VaccinationCenterInformation', vaccinationCenterSchema);

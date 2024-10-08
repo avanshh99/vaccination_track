@@ -1,7 +1,6 @@
 import mongoose, { Mongoose } from "mongoose";
-
-
 const vaccineModel = new mongoose.Schema({
+    email: { type: String, required: true },
     name :{type:String, required:true, unique:true},
     type:{type:String,required:true},
     manufacturer:{type:String,required:true},

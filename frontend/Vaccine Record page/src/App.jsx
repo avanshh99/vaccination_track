@@ -7,7 +7,9 @@ import Login from './components/Login/Login';
 import Navbar from './components/Navbar/Navbar';
 import ChildMainClass from './components/ChildMainClass/ChildMainClass';
 import VaccinationMain from './vaccination/VaccinationMain';
-import Homemain from './components/Home/Homemain';
+import Home from './components/Home/Home';
+import HealthcareCenters from '../src/pages/HealthcareCenters'
+import Chatbot from './pages/chatbot';
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   return (
@@ -18,9 +20,11 @@ function App() {
         <Navbar setShowLogin={setShowLogin} />
         <hr />
         <Routes>
-          <Route path="/home/" element={<Homemain />}></Route>
+          <Route path="/home/" element={<Home />}></Route>
+          <Route path="/vaccine-center/" element={<HealthcareCenters />}></Route>
+          <Route path="/chatbot" element={<Chatbot />}></Route>
           <Route path="/parent/*" element={<ChildMainClass />}></Route>
-          <Route path ="/vaccination-center/*" element ={<VaccinationMain/>}></Route>
+          <Route path="/vaccination-center/*" element={<VaccinationMain />}></Route>
         </Routes>
       </div>
     </>

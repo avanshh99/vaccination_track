@@ -31,8 +31,8 @@ const Navbar = ({ setShowLogin }) => {
             <nav ref={navRef} className="navbar-menu">
                 <li><Link onClick={showNavbar} to="/home">Home</Link></li>
                 <li><Link onClick={showNavbar} to="/parent/view">Child-details</Link></li>
-                <li><Link onClick={showNavbar} to="/parent/postTechnician">Consultant</Link></li>
-                <li><Link onClick={showNavbar} to="/parent/qa">Q&A</Link></li>
+                <li><Link onClick={showNavbar} to="/vaccine-center">Vaccination-Center</Link></li>
+                <li><Link onClick={showNavbar} to="/chatbot">Q&A</Link></li>
                 <li><Link onClick={showNavbar} to="/parent/cp">Child Profile</Link></li>
                 <button className="nav-btn nav-close-btn" onClick={showNavbar}>
                     <FaTimes />
