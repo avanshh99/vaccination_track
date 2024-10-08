@@ -25,8 +25,10 @@ const Navbar = ({ setShowLogin }) => {
     return (
         <div className="navbar">
             <div className="navbar-logo-left">
+                <img src='logo.png' alt="Health Guardian Logo" /> {/* Adjust the path */}
                 Health Guardian
             </div>
+
 
             <nav ref={navRef} className="navbar-menu">
                 <li><Link onClick={showNavbar} to="/">Home</Link></li>

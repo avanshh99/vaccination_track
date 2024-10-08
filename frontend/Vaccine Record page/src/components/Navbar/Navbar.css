@@ -1,4 +1,4 @@
-.navbar {
+/* .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -130,5 +130,156 @@
 
     .navbar-menu a {
         font-size: 1.5rem;
+    }
+} */
+
+
+/* General styles */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar styles */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #003366; /* Dark blue background */
+    color: white;
+    padding: 10px 20px;
+    position: relative;
+}
+
+.navbar-logo-left {
+    font-size: 24px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-logo-left img {
+    height: 40px; /* Adjust based on your image size */
+    margin-right: 10px; /* Spacing between the image and text */
+}
+
+/* Navbar menu styles */
+.navbar-menu {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-menu li {
+    margin: 0 15px; /* Spacing between menu items */
+}
+
+.navbar-menu a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-menu a:hover {
+    background-color: rgba(255, 255, 255, 0.2); /* Lighten background on hover */
+    border-radius: 5px;
+}
+
+/* Responsive navbar */
+.navbar-menu.responsive_nav {
+    display: block;
+    position: absolute;
+    top: 60px; /* Adjust based on your navbar height */
+    right: 0;
+    background-color: #003366; /* Match the background color */
+    width: 100%;
+    z-index: 10;
+}
+
+.navbar-menu.responsive_nav li {
+    margin: 10px 0; /* Spacing for dropdown items */
+}
+
+.nav-btn {
+    background: transparent;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    padding: 0;
+}
+
+.nav-close-btn {
+    display: none; /* Initially hidden */
+}
+
+/* Show close button on responsive navbar */
+.navbar-menu.responsive_nav .nav-close-btn {
+    display: block;
+    margin: 10px;
+}
+
+/* Profile styles */
+.navbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-profile {
+    position: relative;
+}
+
+.navbar-profile img {
+    width: 30px; /* Adjust based on your icon size */
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px; /* Spacing between icon and dropdown */
+    cursor: pointer;
+}
+
+.dropdown {
+    display: none; /* Hide dropdown by default */
+    position: absolute;
+    right: 0;
+    background-color: #ffffff; /* White background for dropdown */
+    border: 1px solid #ddd; /* Border for dropdown */
+    border-radius: 5px;
+    z-index: 20;
+    margin-top: 5px; /* Space between icon and dropdown */
+}
+
+.navbar-profile:hover .dropdown {
+    display: block; /* Show dropdown on hover */
+}
+
+.dropdown li {
+    padding: 10px;
+    cursor: pointer;
+    color: #003366; /* Dark blue text */
+}
+
+.dropdown li:hover {
+    background-color: rgba(0, 51, 102, 0.1); /* Lighten background on hover */
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .navbar-menu {
+        display: none; /* Hide menu on small screens */
+        flex-direction: column;
+    }
+
+    .navbar-menu.responsive_nav {
+        display: flex; /* Show menu when responsive */
+    }
+
+    .nav-btn {
+        display: block; /* Show burger icon */
     }
 }

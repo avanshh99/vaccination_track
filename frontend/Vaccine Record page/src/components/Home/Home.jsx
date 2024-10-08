@@ -4,19 +4,24 @@ import HomeAbout from './HomeAbout';
 // import HomeServices from './HomeServices';
 import HomeFooter from './HomeFooter';
 import HomeInfoPolice from './HomeInfoPolice';
-import Homemain from './Homemain';
+// import Homemain from './Homemain';
+import  Map from '../GeneralDashboard/Map'
+import Steps from '../GeneralDashboard/Steps'
+import Footer from '../GeneralDashboard/Footer'
 
 const Home = () => {
     return (
-        <div className="space-y-5 bg-gray-100">
-            <Homemain></Homemain>
+        <div className>
+            <Map></Map>
+            <Steps></Steps>
+            {/* <Homemain></Homemain>
             {/* <HomePhoto /> */}
             <hr />
-            <HomeAbout />
+            {/* <HomeAbout />
             <HomeInfoPolice />
             {/* <HomeServices /> */}
             <hr />
-            <HomeFooter />
+            <Footer /> 
         </div>
     );
 };
