@@ -7,6 +7,7 @@ import vaccinationCenterRouter from "./routes/vaccinationRoutes/vaccinationCente
 import parentUserRouter from "./routes/parentRoutes/parentUser.js";
 import parentCreateRouter from "./routes/parentRoutes/childParentRoute.js";
 import 'dotenv/config';
+import mailRouter from "./routes/mail.js";
 
 const app = express();
 const serverLive = process.env.PORT || 5000;
@@ -44,14 +45,17 @@ app.use("/parent/child", parentCreateRouter);
 app.use("/vaccine/user", vaccinationUserRouter);
 app.use("/vaccine/center", vaccinationCenterRouter);
 
+
+// Message Gmail 
+app.use("/api/mail",mailRouter);
+
 console.log(process.env.SECRET);
-// Global error handling middleware (optional but recommended)
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({ message: 'Something went wrong!', error: err.message });
 });
 
-// Start the server
 app.listen(serverLive, () => {
     console.log(`Server is running on port ${serverLive}`);
 });
