@@ -1,19 +1,41 @@
+// import jwt from "jsonwebtoken";
+// const jwtAuth = (req, res, next) => {
+//     const { token } = req.cookies;
+
+//     if (!token) { 
+//         return res.status(401).json({ error: 'User not authorized' });
+//     }
+
+//     try {
+//         const payload = jwt.verify(token, process.env.SECRET);
+//         req.user = { userId: payload.userId}; 
+//         next();
+//     } catch (error) {
+//         return res.status(401).json({ error: 'Invalid token' });
+//     }
+// };
+
+// export  {jwtAuth};
+
+
+
+
 import jwt from "jsonwebtoken";
+
 const jwtAuth = (req, res, next) => {
-    const { token } = req.cookies;
+  const { token } = req.cookies; // Extract token from cookies
 
-    if (!token) {
-        
-        return res.status(401).json({ error: 'User not authorized' });
-    }
+  if (!token) { 
+      return res.status(401).json({ error: 'User not authorized' });
+  }
 
-    try {
-        const payload = jwt.verify(token, process.env.SECRET);
-        req.user = { userId: payload.userId }; 
-        next();
-    } catch (error) {
-        return res.status(401).json({ error: 'Invalid token' });
-    }
+  try {
+      const payload = jwt.verify(token, process.env.SECRET);
+      req.user = { userId: payload.userId}; // Set userId in req
+      next();
+  } catch (error) {
+      return res.status(401).json({ error: 'Invalid token' });
+  }
 };
 
-export  {jwtAuth};
+export { jwtAuth };
