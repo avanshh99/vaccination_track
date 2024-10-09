@@ -8,6 +8,7 @@ import parentUserRouter from "./routes/parentRoutes/parentUser.js";
 import parentCreateRouter from "./routes/parentRoutes/childParentRoute.js";
 import 'dotenv/config';
 import mailRouter from "./routes/mail.js";
+import rateLimit from "express-rate-limit"; 
 
 const app = express();
 const serverLive = process.env.PORT || 5000;
@@ -34,6 +35,16 @@ app.use(cookieParser());
 
 // Connect to MongoDB
 connectDB();
+
+const limiter = rateLimit({
+    windowMs: 60 * 1000, 
+    max: 20, 
+    message: 'Too many requests from this IP, please try again after a minute.',
+    standardHeaders: true,
+    legacyHeaders: false,
+});
+app.use(limiter);
+
 
 // Routes
 
