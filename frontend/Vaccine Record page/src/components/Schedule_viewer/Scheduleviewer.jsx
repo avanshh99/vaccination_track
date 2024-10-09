@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Notify from './Notify'; // Assuming Notify.js is in the same directory
 
 const ScheduleViewer = () => {
   const [email, setEmail] = useState('');
@@ -8,12 +7,12 @@ const ScheduleViewer = () => {
 
   const handleSearch = () => {
     // TODO: Implement actual API call to search for the email
+    // This is a mock implementation
     if (email === 'parent@example.com') {
       setSearchResult({
-        name: 'Kshitij Hundre',
+        name: 'John Doe',
         vaccine: 'COVID-19',
-        age: '10',
-        dob: '2014-04-15',
+        age: '2',
         date: '2024-10-15',
         time: '10:00 AM',
         status: 'Scheduled',
@@ -35,7 +34,7 @@ const ScheduleViewer = () => {
 
   return (
     <div style={{ padding: '1rem' }}>
-      <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Schedule Viewer</h2>
+      <h2 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>View the Schedule</h2>
       <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '1rem' }}>
         <input
           type="email"
@@ -59,10 +58,9 @@ const ScheduleViewer = () => {
       )}
 
       {searchResult && (
-        <div style={{ border: '1px solid #ccc', padding: '1rem', borderRadius: '4px', marginBottom: '1rem' }}>
+        <div style={{ border: '1px solid #ccc', padding: '1rem', borderRadius: '4px' }}>
           <h3 style={{ fontWeight: 'bold' }}>{searchResult.name}</h3>
           <p>Age: {searchResult.age}</p>
-          <p>Date of Birth: {searchResult.dob}</p>
           <p>Gender: {searchResult.gender}</p>
           <p>Relationship: {searchResult.relationshipWithParent}</p>
           <p>Blood Group: {searchResult.bloodGroup}</p>
@@ -80,8 +78,6 @@ const ScheduleViewer = () => {
           )}
         </div>
       )}
-
-      <Notify />
     </div>
   );
 };
