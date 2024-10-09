@@ -87,8 +87,7 @@ function Footer() {
             <h3 className="font-bold mb-4">SUPPORT & CONTACT US</h3>
             <ul className="space-y-2">
               <li>Frequently Asked Questions</li>
-              <li>Certificate Corrections</li>
-              <li>Helpline: +91-11-23978046 (Toll Free - 1075)</li>
+              <li>Helpline: +91-11-23978046</li>
               <li>Technical Helpline: 0120-4783222</li>
             </ul>
           </div>

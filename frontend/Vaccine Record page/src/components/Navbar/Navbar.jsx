@@ -7,6 +7,7 @@ import { StoreContext } from '../../context/StoreContext';
 const Navbar = ({ setShowLogin }) => {
     const navigate = useNavigate();
     const [isNavOpen, setIsNavOpen] = useState(false); // State to toggle the nav
+    const [isProfileOpen, setIsProfileOpen] = useState(false); // State to manage profile dropdown
     const { token, setToken } = useContext(StoreContext);
 
     const logout = () => {
@@ -17,6 +18,10 @@ const Navbar = ({ setShowLogin }) => {
 
     const toggleNavbar = () => {
         setIsNavOpen(!isNavOpen); // Toggles the mobile menu
+    };
+
+    const toggleProfileDropdown = () => {
+        setIsProfileOpen(!isProfileOpen); // Toggles the profile dropdown
     };
 
     return (
@@ -53,15 +58,22 @@ const Navbar = ({ setShowLogin }) => {
                         </button>
                     ) : (
                         <div className="relative">
-                            <img src={assets.profile_icon} alt="Profile" className="h-10 w-10 rounded-full cursor-pointer" />
-                            <ul className="absolute right-0 mt-2 w-48 bg-white text-blue-600 shadow-lg rounded-lg">
-                                <li 
-                                    onClick={logout} 
-                                    className="flex items-center px-4 py-2 cursor-pointer hover:bg-blue-100">
-                                    <img src={assets.cross_icon} alt="Logout Icon" className="h-5 w-5 mr-2" />
-                                    <p>Logout</p>
-                                </li>
-                            </ul>
+                            <img 
+                                src={assets.profile_icon} 
+                                alt="Profile" 
+                                className="h-10 w-10 rounded-full cursor-pointer" 
+                                onClick={toggleProfileDropdown} 
+                            />
+                            {isProfileOpen && ( // Show dropdown if profile is open
+                                <ul className="absolute right-0 mt-2 w-48 bg-white text-blue-600 shadow-lg rounded-lg">
+                                    <li 
+                                        onClick={logout} 
+                                        className="flex items-center px-4 py-2 cursor-pointer hover:bg-blue-100">
+                                        <img src={assets.cross_icon} alt="Logout Icon" className="h-5 w-5 mr-2" />
+                                        <p>Logout</p>
+                                    </li>
+                                </ul>
+                            )}
                         </div>
                     )}
                 </div>
@@ -82,15 +94,22 @@ const Navbar = ({ setShowLogin }) => {
                     </button>
                 ) : (
                     <div className="relative">
-                        <img src={assets.profile_icon} alt="Profile" className="h-10 w-10 rounded-full cursor-pointer" />
-                        <ul className="absolute right-0 mt-2 w-48 bg-white text-blue-600 shadow-lg rounded-lg">
-                            <li 
-                                onClick={logout} 
-                                className="flex items-center px-4 py-2 cursor-pointer hover:bg-blue-100">
-                                <img src={assets.cross_icon} alt="Logout Icon" className="h-5 w-5 mr-2" />
-                                <p>Logout</p>
-                            </li>
-                        </ul>
+                        <img 
+                            src={assets.profile_icon} 
+                            alt="Profile" 
+                            className="h-10 w-10 rounded-full cursor-pointer" 
+                            onClick={toggleProfileDropdown} 
+                        />
+                        {isProfileOpen && ( // Show dropdown if profile is open
+                            <ul className="absolute right-0 mt-2 w-48 bg-white text-blue-600 shadow-lg rounded-lg">
+                                <li 
+                                    onClick={logout} 
+                                    className="flex items-center px-4 py-2 cursor-pointer hover:bg-blue-100">
+                                    <img src={assets.cross_icon} alt="Logout Icon" className="h-5 w-5 mr-2" />
+                                    <p>Logout</p>
+                                </li>
+                            </ul>
+                        )}
                     </div>
                 )}
             </nav>
