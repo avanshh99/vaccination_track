@@ -228,13 +228,12 @@ const HealthcareCenters = () => {
                         <option key={index} value={vaccine.name}>{vaccine.name}</option>
                     ))}
                 </select>
-                <select className="search-filter1">
+                {/* <select className="search-filter1">
                     <option value="">Select time slot</option>
                     <option value="morning">Morning Slot: 10am - 12.30pm</option>
                     <option value="afternoon">Late Afternoon Slot: 3.30pm - 5.30pm</option>
                     <option value="evening">Evening Slot: 7pm - 8.30pm</option>
-                </select>
-                <button className="search-button">Search</button>
+                </select> */}
             </div>
             <div className="grid-container">
                 {filteredCenters.map((center, index) => (
