@@ -13,11 +13,12 @@ body {
 .grid-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 30px; /* Increase this value to create more space between the cards */
     padding: 40px;
     max-width: 1200px;
     margin: 0 auto;
 }
+
 
 .healthcare-card {
     background-color: #cecece; 
@@ -29,6 +30,7 @@ body {
     border: 2px solid transparent;
     position: relative;
     overflow: hidden;
+    margin-top: 20px; /* Add this line to increase vertical space between cards */
 }
 
 
@@ -211,4 +213,19 @@ footer {
         grid-template-columns: 1fr;
         padding: 10px;
     }
+}
+
+.book-slot-btn {
+    background-color: red; /* Set the background color to red */
+    color: white; /* Text color */
+    border: none; /* Remove default border */
+    padding: 10px 20px; /* Add some padding */
+    margin-top: 10px; /* Add space above the button */
+    cursor: pointer; /* Change cursor on hover */
+    font-size: 16px; /* Increase font size */
+    border-radius: 5px; /* Rounded corners */
+}
+
+.book-slot-btn:hover {
+    background-color: darkred; /* Darker shade on hover */
 }

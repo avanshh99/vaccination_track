@@ -134,8 +134,8 @@
 // export default HealthcareCenters;
 
 
-
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for redirection
 import './HealthcareCenters.css';
 import axios from 'axios';
 
@@ -150,6 +150,7 @@ const vaccines = [
 ];
 
 const HealthcareCenters = () => {
+    const navigate = useNavigate(); // Initialize the useNavigate hook
     const [visibleCenter, setVisibleCenter] = useState(null);
     const [visibleDetails, setVisibleDetails] = useState(null);
     const [healthcareCenters, setHealthcareCenters] = useState([]);
@@ -194,7 +195,7 @@ const HealthcareCenters = () => {
 
     return (
         <div>
-            <h1 className="center-list-heading">Vaccination Center List</h1>
+            <h1 className="center-list-heading">Go to your nearest Vaccination Center</h1>
             <div className="search-bar-container">
                 <input
                     type="text"
@@ -209,14 +210,18 @@ const HealthcareCenters = () => {
                     onChange={(e) => setSelectedLocation(e.target.value)}
                 >
                     <option value="">Filter by location</option>
-                    <option value="Cityville">Cityville</option>
-                    <option value="Greendale">Greendale</option>
-                    <option value="Healthcity">Healthcity</option>
-                    <option value="Sunnytown">Sunnytown</option>
-                    <option value="Bluetown">Bluetown</option>
-                    <option value="Riverville">Riverville</option>
-                    <option value="Mountainville">Mountainville</option>
-                    <option value="Clearcity">Clearcity</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Pune">Pune</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="Indore">Indore</option>
+                    <option value="Chennai">Madras (now Chennai)</option>
+                    <option value="Delhi">Delhi</option>
+                    <option value="Hyderabad">Hyderabad</option>
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Kolkata">Kolkata</option>
+                    <option value="Jaipur">Jaipur</option>
+                    <option value="Surat">Surat</option>
+                    <option value="Coimbatore">Coimbatore</option>
                 </select>
                 <select
                     className="search-filter"
@@ -228,12 +233,6 @@ const HealthcareCenters = () => {
                         <option key={index} value={vaccine.name}>{vaccine.name}</option>
                     ))}
                 </select>
-                {/* <select className="search-filter1">
-                    <option value="">Select time slot</option>
-                    <option value="morning">Morning Slot: 10am - 12.30pm</option>
-                    <option value="afternoon">Late Afternoon Slot: 3.30pm - 5.30pm</option>
-                    <option value="evening">Evening Slot: 7pm - 8.30pm</option>
-                </select> */}
             </div>
             <div className="grid-container">
                 {filteredCenters.map((center, index) => (
@@ -254,6 +253,13 @@ const HealthcareCenters = () => {
                                         {vaccine.name}: {vaccine.quantity} doses left
                                     </p>
                                 ))}
+                                {/* Book Slot Button under Vaccine Quantity */}
+                                <button
+                                    className="book-slot-btn"
+                                    onClick={() => navigate('/booking-slot')} // Redirect to the booking slot page
+                                >
+                                    Book Slot
+                                </button>
                             </div>
                         )}
                         <button
@@ -277,3 +283,5 @@ const HealthcareCenters = () => {
 };
 
 export default HealthcareCenters;
+
+

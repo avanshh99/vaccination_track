@@ -10,6 +10,8 @@ import VaccinationMain from './vaccination/VaccinationMain';
 import Home from './components/Home/Home';
 import HealthcareCenters from '../src/pages/HealthcareCenters'
 import Chatbot from './pages/chatbot';
+import Booking from './components/BookingPage/Booking';
+import BookingPage from './components/BookingPage/Booking';
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   return (
@@ -25,6 +27,8 @@ function App() {
           <Route path="/chatbot" element={<Chatbot />}></Route>
           <Route path="/parent/*" element={<ChildMainClass />}></Route>
           <Route path="/vaccination-center/*" element={<VaccinationMain />}></Route>
+          <Route path="/booking-slot/*" element={<BookingPage />}></Route>
+          <Route></Route>
         </Routes>
       </div>
     </>
