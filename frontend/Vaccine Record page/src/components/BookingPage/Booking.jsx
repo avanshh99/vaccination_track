@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaCheckCircle } from 'react-icons/fa';
 import { PDFDownloadLink, Document, Page, Text, StyleSheet } from '@react-pdf/renderer';
 import 'tailwindcss/tailwind.css';
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     margin: 5,
     color: '#34495e',
-    fontFamily: 'Times New Roman',
   },
   footer: {
     marginTop: 20,
@@ -45,14 +44,31 @@ const BookingSlotPage = () => {
   const [age, setAge] = useState('');
   const [fee, setFee] = useState('');
   const [selectedSlot, setSelectedSlot] = useState('');
-  const [slotAvailable, setSlotAvailable] = useState(true); // Default to true
-  const [bookingConfirmed, setBookingConfirmed] = useState(false); // New state to track booking confirmation
+  const [slotAvailable, setSlotAvailable] = useState(true);
+  const [bookingConfirmed, setBookingConfirmed] = useState(false);
+  const [vaccinationCenterEmail, setVaccinationCenterEmail] = useState(''); // State for center email
+  const [userEmail, setUserEmail] = useState(''); // State for user email input
 
   // Dummy fee data
   const dummyVaccineFees = {
     Hepatitis: 499,
     // Add more dummy data as needed
   };
+
+  useEffect(() => {
+    // Fetch vaccination center email from the backend (dummy URL here)
+    const fetchEmail = async () => {
+      try {
+        const response = await fetch('https://your-backend-url/api/vaccination-center/email'); // Replace with your backend URL
+        const data = await response.json();
+        setVaccinationCenterEmail(data.email);
+      } catch (error) {
+        console.error('Error fetching vaccination center email:', error);
+      }
+    };
+
+    fetchEmail();
+  }, []);
 
   const handleVaccineChange = (e) => {
     const name = e.target.value;
@@ -74,7 +90,7 @@ const BookingSlotPage = () => {
 
     // Check for specific unavailable slots
     if (selectedSlot === '1:00 PM' || selectedSlot === '2:00 PM') {
-      alert('No slot available for the selected time. Check other centres or slots. Thank you.');
+      alert('No slot available for the selected time. Check other centers or slots. Thank you.');
       window.location.href = '/vaccine-center'; // Redirect to Vaccination Center
       return;
     } else {
@@ -94,6 +110,7 @@ const BookingSlotPage = () => {
         <Text style={styles.section}>Age: <Text style={styles.text}>{age}</Text></Text>
         <Text style={styles.section}>Fee: <Text style={styles.text}>₹{fee}</Text></Text>
         <Text style={styles.section}>Selected Slot: <Text style={styles.text}>{selectedSlot}</Text></Text>
+        <Text style={styles.section}>Vaccination Center Email: <Text style={styles.text}>{vaccinationCenterEmail}</Text></Text>
         <Text style={styles.footer}>Thank you for booking!</Text>
       </Page>
     </Document>
@@ -108,15 +125,9 @@ const BookingSlotPage = () => {
     alert('Booking confirmed!');
     setBookingConfirmed(true); // Set booking as confirmed
     setTimeout(() => {
-      // window.location.href = '/vaccination-center';
+      // Redirect to vaccination center after 4 seconds
+      window.location.href = '/vaccination-center';
     }, 4000);
-  };
-
-  const handleDownload = () => {
-    // Redirect to vaccination center after 3 seconds of download
-    setTimeout(() => {
-      window.location.href = '/vaccine-center';
-    }, 2000); // Adjust time as needed
   };
 
   return (
@@ -178,6 +189,17 @@ const BookingSlotPage = () => {
         </div>
 
         <div className="mb-4">
+          <label className="block mb-2">Center Email:</label>
+          <input
+            type="email"
+            value={userEmail}
+            onChange={(e) => setUserEmail(e.target.value)}
+            className="w-full border rounded p-2"
+            required
+          />
+        </div>
+
+        <div className="mb-4">
           <label className="block mb-2">Choose Slot:</label>
           <select
             value={selectedSlot}
@@ -198,30 +220,23 @@ const BookingSlotPage = () => {
             onClick={checkSlotAvailability}
             className="mt-2 bg-green-500 text-white px-4 py-2 rounded"
           >
-            <FaCheckCircle className="inline" /> Check Slot
+            <FaCheckCircle className="inline" /> Check Slot Availability
           </button>
         </div>
 
         <button
           type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded mr-2"
+          className={`mt-4 bg-blue-500 text-white px-4 py-2 rounded ${!slotAvailable ? 'cursor-not-allowed opacity-50' : ''}`}
+          disabled={!slotAvailable} // Disable button if slot is not available
         >
           Confirm Booking
         </button>
 
-        {/* Conditionally render the PDFDownloadLink based on booking confirmation */}
-        {bookingConfirmed && (
+        {bookingConfirmed && ( // Only show download link if booking is confirmed
           <PDFDownloadLink
             document={<MyDocument />}
             fileName="Booking_Certificate.pdf"
-            style={{
-              textDecoration: 'none',
-              color: 'white',
-              backgroundColor: 'blue',
-              padding: '0.5rem 1rem',
-              borderRadius: '0.5rem',
-            }}
-            onClick={handleDownload} // Handle download click
+            style={{ textDecoration: 'none', color: 'white', backgroundColor: 'blue', padding: '0.5rem 1rem', borderRadius: '0.5rem' }}
           >
             {({ loading }) => (loading ? 'Loading PDF...' : 'Download Certificate')}
           </PDFDownloadLink>
