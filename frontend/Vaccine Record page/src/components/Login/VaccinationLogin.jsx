@@ -2,11 +2,11 @@ import React, { useContext, useState } from 'react'
 import { assets } from '../../assets/assets'
 import axios from "axios"
 import { toast } from 'react-toastify';
-import { StoreContext } from "../../context/StoreContext"
+import StoreContextProvider, { StoreContext } from "../../context/StoreContext"
 import './Login.css'
 const VaccinationLogin = ({ setVaccinationLogin }) => {
     const [currState, setCurrState] = useState("Login")
-    const { setToken } = useContext(StoreContext)
+    const { setToken, setEmail } = useContext(StoreContext)
     const [data, setData] = useState({
         name: "",
         email: "",
@@ -38,6 +38,7 @@ const VaccinationLogin = ({ setVaccinationLogin }) => {
 
             if (response.data.success) {
                 setToken(response.data.message)
+                setEmail(data.email);
                 localStorage.setItem("token", response.data.token)
                 setVaccinationLogin(false);
                 toast.success(response.data.message);
