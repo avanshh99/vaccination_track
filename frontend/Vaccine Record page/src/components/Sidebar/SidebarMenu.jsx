@@ -35,12 +35,12 @@ const menuItemAnimation = {
   }),
 };
 
-const SidebarMenu = ({ route, showAnimation, isOpen, setIsOpen }) => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    setIsOpen(true);
-  };
+// const SidebarMenu = ({ route, showAnimation, isOpen, setIsOpen }) => {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+//   const toggleMenu = () => {
+//     setIsMenuOpen(!isMenuOpen);
+//     setIsOpen(true);
+//   };
 
   useEffect(() => {
     if (!isOpen) {
@@ -92,7 +92,7 @@ const SidebarMenu = ({ route, showAnimation, isOpen, setIsOpen }) => {
             {route.subRoutes.map((subRoute, i) => (
               <motion.div variants={menuItemAnimation} key={i} custom={i}>
                 <NavLink to={subRoute.path} className="link">
-                  <div className="icon">{subRoute.icon}</div>
+                <div className="icon">{subRoute.icon}</div>
                   <motion.div className="link_text">{subRoute.name}</motion.div>
                 </NavLink>
               </motion.div>
@@ -102,6 +102,5 @@ const SidebarMenu = ({ route, showAnimation, isOpen, setIsOpen }) => {
       </AnimatePresence>
     </>
   );
-};
-
 export default SidebarMenu;
+

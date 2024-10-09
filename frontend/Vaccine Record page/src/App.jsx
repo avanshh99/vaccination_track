@@ -11,6 +11,7 @@ import VaccinationRecord from './components/ParentProfile/VaccinationRecord/Vacc
 import Sidebar from "./components/Sidebar/Sidebar"; // Import the Sidebar
 import VaccineRegisterForm from './components/VaccineRegisterForm/VaccineRegisterForm';
 import CenterInfo from './components/CenterInfo/CenterInfo';
+import ScheduleViewer from './components/Schedule_viewer/Scheduleviewer';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -33,6 +34,7 @@ function App() {
               <Route path="/cp/*" element={<ChildProfile />} />
               <Route path="/vaccine-register" element={<VaccineRegisterForm />} />
               <Route path="/center-info" element={<CenterInfo />} />
+             <Route path="/schedule" element={<ScheduleViewer />} />
             </Routes>
           </div>
         </div>

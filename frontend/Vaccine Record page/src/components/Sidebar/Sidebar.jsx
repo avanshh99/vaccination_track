@@ -181,7 +181,7 @@ const App = () => {
   const Menus = [
     { title: "Vaccine Register", src: "add-vaccine", gap: true, path: "/vaccine-register" },
     { title: "Centre Info", src: "center-info", gap: true , path: "/center-info"},
-    { title: "Schedule Viewer", src: "schedule", gap: true },
+    { title: "Schedule Viewer", src: "schedule", gap: true, path:"/schedule" },
     { title: "Notify Parent", src: "notify", gap: true },
     { title: "Chart of Vaccines", src: "chart", gap: true },
   ];
