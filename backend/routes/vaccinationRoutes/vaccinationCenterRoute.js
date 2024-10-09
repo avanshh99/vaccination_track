@@ -5,7 +5,7 @@ import { createVaccine, getAllVaccines } from "../../controllers/vaccinationCent
 
 const vaccinationCenterRouter = express.Router();
 
-vaccinationCenterRouter.post("/create", vaccinationCenterInfo);
+vaccinationCenterRouter.post("/create", jwtAuth,vaccinationCenterInfo);
 vaccinationCenterRouter.post("/add-vaccine", jwtAuth, createVaccine);
 vaccinationCenterRouter.get("/get-vaccine", jwtAuth,getAllVaccines);
 vaccinationCenterRouter.get("/get-vaccination-center", getVaccinationCenterInfo);

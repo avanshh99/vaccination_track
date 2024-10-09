@@ -77,7 +77,7 @@ const ProfileForm = ({ profile, setProfile, onSave, isNewProfile }) => {
       return { ...prev, [name]: type === 'checkbox' ? checked : value };
     });
   };
-  
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -235,7 +235,7 @@ const ProfileForm = ({ profile, setProfile, onSave, isNewProfile }) => {
 // Sidebar component
 const Sidebar = () => {
   return (
-    <div className="w-64 bg-blue-600 text-white p-6 h-screen">
+    <div className="relative w-64 bg-blue-600 text-white p-6 h-screen">
       <h1 className="text-2xl font-bold mb-8">Profile</h1>
       <nav>
         <Link to="/parent/cp/profiles" className="flex items-center mb-4 hover:bg-blue-700 p-2 rounded">
