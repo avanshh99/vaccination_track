@@ -126,7 +126,7 @@ const BookingSlotPage = () => {
     setBookingConfirmed(true); // Set booking as confirmed
     setTimeout(() => {
       // Redirect to vaccination center after 4 seconds
-      window.location.href = '/vaccination-center';
+      window.location.href = '/vaccine-center';
     }, 4000);
   };
 
