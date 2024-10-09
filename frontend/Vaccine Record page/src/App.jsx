@@ -12,6 +12,7 @@ import Sidebar from "./components/Sidebar/Sidebar"; // Import the Sidebar
 import VaccineRegisterForm from './components/VaccineRegisterForm/VaccineRegisterForm';
 import CenterInfo from './components/CenterInfo/CenterInfo';
 import ScheduleViewer from './components/Schedule_viewer/Scheduleviewer';
+import Notify from './components/Notifyparent/Notify';
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -35,6 +36,7 @@ function App() {
               <Route path="/vaccine-register" element={<VaccineRegisterForm />} />
               <Route path="/center-info" element={<CenterInfo />} />
              <Route path="/schedule" element={<ScheduleViewer />} />
+             <Route path="/notify" element={<Notify />} />
             </Routes>
           </div>
         </div>
