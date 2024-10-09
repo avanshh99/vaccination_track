@@ -537,7 +537,7 @@ const Login = ({ setShowLogin }) => {
                                 onChange={() => setLoginType("parent")}
                                 className="mr-1"
                             />
-                            Parent Login
+                            Parent 
                         </label>
                         <label>
                             <input
@@ -548,7 +548,7 @@ const Login = ({ setShowLogin }) => {
                                 onChange={() => setLoginType("vaccine")}
                                 className="mr-1"
                             />
-                            Vaccination Center Login
+                            Vaccination Center 
                         </label>
                     </div>
 

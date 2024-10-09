@@ -3,11 +3,11 @@ import { FaArrowRight } from 'react-icons/fa'; // Importing arrow icon
 
 function Steps() {
     return (
-        <div className="min-h-screen bg-white flex flex-col items-center justify-center py-0 mb-0">
+        <div className="min-h-screen bg-white flex flex-col items-center justify-center py-0 mb-0 bg-gradient-to-r from-blue-200 to-white">
             <h2 className="text-3xl font-bold mb-16 text-blue-600">Get Vaccinated in 3 Easy Steps</h2>
             <div className="flex flex-col md:flex-row items-center justify-center space-y-6 md:space-y-0 md:space-x-6">
                 {/* Step 1 */}
-                <div className="flex flex-col items-center bg-blue-100 rounded-lg shadow-md p-6 w-full md:w-1/3 h-80"> {/* Fixed height */}
+                <div className="flex flex-col items-center bg-blue-100 rounded-lg shadow-md p-6 w-full md:w-1/3 h-96 transition-transform transform hover:scale-105 hover:shadow-xl duration-300"> {/* Increased height */}
                     <img
                         src="https://www.cowin.gov.in/assets/images/Step_1.svg"
                         alt="Book Appointment"
@@ -24,7 +24,7 @@ function Steps() {
                 <FaArrowRight className="text-blue-600 w-10 h-10 hidden md:block" />
 
                 {/* Step 2 */}
-                <div className="flex flex-col items-center bg-blue-100 rounded-lg shadow-md p-6 w-full md:w-1/3 h-80"> {/* Fixed height */}
+                <div className="flex flex-col items-center bg-blue-100 rounded-lg shadow-md p-6 w-full md:w-1/3 h-96 transition-transform transform hover:scale-105 hover:shadow-xl duration-300"> {/* Increased height */}
                     <img
                         src="https://www.cowin.gov.in/assets/images/Step_2.svg"
                         alt="Get Vaccinated"
@@ -41,7 +41,7 @@ function Steps() {
                 <FaArrowRight className="text-blue-600 w-10 h-10 hidden md:block" />
 
                 {/* Step 3 */}
-                <div className="flex flex-col items-center bg-blue-100 rounded-lg shadow-md p-6 w-full md:w-1/3 h-80"> {/* Fixed height */}
+                <div className="flex flex-col items-center bg-blue-100 rounded-lg shadow-md p-6 w-full md:w-1/3 h-96 transition-transform transform hover:scale-105 hover:shadow-xl duration-300"> {/* Increased height */}
                     <img
                         src="https://www.cowin.gov.in/assets/images/Step_3.svg"
                         alt="Download Certificate"

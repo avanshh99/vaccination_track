@@ -1,0 +1,12 @@
+/* Custom CSS for the chatbot input field */
+.rcw-new-message {
+    height: 60px; /* Set a fixed height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    white-space: pre-wrap; /* Preserve whitespace and wrap text */
+}
+
+.rcw-new-message input {
+    height: 100%; /* Full height for the input field */
+    overflow-y: hidden; /* Prevent input expansion */
+    resize: none; /* Prevent manual resizing */
+}
